@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Model;
+use App\Machine;
 use Illuminate\Http\Request;
 
-class ModelController extends Controller
+class MachineController extends Controller
 {
      public function listup()
     {
-        return view('models/list');  
+        return view('machines/list');  
     }
     
     public function index()
     {
-        return view('models/index');
+        return view('machines/index');
     }
 }

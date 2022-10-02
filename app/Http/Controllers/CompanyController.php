@@ -9,11 +9,11 @@ class CompanyController extends Controller
 {
     public function listup()
     {
-        return view('companys/list');  
+        return view('companies/list');  
     }
     
     public function index()
     {
-        return view('companys/index');  
+        return view('companies/index');  
     }
 }

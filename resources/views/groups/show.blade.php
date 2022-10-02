@@ -19,11 +19,11 @@
             <a href="/groups">グループ一覧へ</a>
         </p>
          <p class = "create">
-            <a href="/groups/create">>グループ作成</a>
+            <a href="/groups/create">グループ作成</a>
         </p>
-        <p class = "title">>修正案タイトル</p>
+        <p class = "title">グループ名</p>
         <p class = "edit">
-            <a href="/groups/edit">>グループ編集</a>
+            <a href="/groups/edit">グループ編集</a>
         </p>
         <p class = "chat">
             <a href="/chats">チャット</a>

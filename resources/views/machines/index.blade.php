@@ -16,7 +16,7 @@
             <a href="/">トップページへ</a>
         </p>
         <p class = "model">
-            <a href="/modellist">ゲーム機種一覧へ</a>
+            <a href="/machinelist">ゲーム機種一覧へ</a>
         </p>
     </body>
 </html>
