@@ -16,7 +16,7 @@
             <a href="/">トップページへ</a>
         </p>
        <p class = "model_name">
-            <a href="/modelindex">機種名(PC)</a>
+            <a href="/machineindex">機種名(PC)</a>
         </p>
     </body>
 </html>

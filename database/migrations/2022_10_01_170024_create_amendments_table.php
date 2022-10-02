@@ -14,8 +14,13 @@ class CreateAmendmentsTable extends Migration
     public function up()
     {
         Schema::create('amendments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('title', 50);
+            $table->string('body', 200);
+            $table->integer('game_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

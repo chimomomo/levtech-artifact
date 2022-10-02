@@ -19,7 +19,7 @@
             <a href="/companylist">会社名一覧</a>
         </p>
         <p class = "model">
-            <a href="/modellist">機種一覧</a>
+            <a href="/machinelist">機種一覧</a>
         </p>
         <p class = "genre">
             <a href="/genrelist">ゲームジャンル一覧</a>
@@ -48,5 +48,16 @@
         <p class = "group">
             <a href="/groups">グループ一覧</a>
         </p>
+        <div class='posts'>
+            @foreach ($games as $game)
+                <div class='game'>
+                    <h2 class='title'>{{ $game->name }}</h2>
+                    <p class='comment'>{{ $game->comment}}</p>
+                    <p class='company'>{{ $game->company->name}}</p>
+                    <p class='genre'>{{ $game->genre->name}}</p>
+                    <p class='Machine'>{{ $game->machine->name}}</p>
+                </div>
+            @endforeach
+        </div>
     </body>
 </html>

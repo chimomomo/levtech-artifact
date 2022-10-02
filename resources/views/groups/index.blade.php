@@ -16,7 +16,7 @@
             <a href="/">トップページへ</a>
         </p>
         <p class = "create">
-            <a href="/groupss/create">グループ作成</a>
+            <a href="/groups/create">グループ作成</a>
         </p>
         <p class = "title">
             <a href="/groups/show">グループタイトル</a>

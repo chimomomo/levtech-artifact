@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 50);
             $table->string('body', 200);
-            $table->string('video_name', 50)->nullable();
-            $table->string('video_path', 50)->nullable();
+            $table->float('stars', 2, 1)->default(0.0);
             $table->integer('game_id')->unsigned();
+            $table->integer('company_id')->unsigned();
+            $table->integer('machine_id')->unsigned();
+            $table->integer('genre_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
@@ -33,6 +35,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('reviews');
     }
 }
