@@ -10,4 +10,9 @@ class Company extends Model
     {
         return $this->hasMany('App\Game');  
     }
+    
+    public function getByCompany(int $limit_count = 5)
+    {
+         return $this->games()->with('company')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }

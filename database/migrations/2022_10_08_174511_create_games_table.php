@@ -21,7 +21,6 @@ class CreateGamesTable extends Migration
             $table->string('image_name', 50)->nullable();
             $table->string('image_path', 50)->nullable();
             $table->integer('company_id')->unsigned();
-            $table->integer('machine_id')->unsigned();
             $table->integer('genre_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

@@ -15,8 +15,12 @@
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
-       <p class = "company_name">
-            <a href="/companyindex">会社名(任天堂)</a>
-        </p>
+        <div class='companies'>
+            @foreach ($companies as $company)
+                <div class='company'>
+                    <h2 class='name'>{{ $company->name }}</h2>
+                </div>
+            @endforeach
+        </div>
     </body>
 </html>

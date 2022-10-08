@@ -15,8 +15,12 @@
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
-       <p class = "genre_name">
-            <a href="/genreindex">ジャンル(シューティング)</a>
-        </p>
+        <div class='genres'>
+            @foreach ($genres as $genre)
+                <div class='genre'>
+                    <h2 class='name'>{{ $genre->name }}</h2>
+                </div>
+            @endforeach
+        </div>
     </body>
 </html>
