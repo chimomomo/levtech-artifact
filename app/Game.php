@@ -8,7 +8,7 @@ class Game extends Model
 {
     public function getGame(int $limit_count = 5)
     {
-        return $this::with('company', 'genre', 'machine')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('company', 'genre')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
     public function company()
@@ -19,8 +19,8 @@ class Game extends Model
     {
         return $this->belongsTo('App\Genre');
     }
-    public function machine()
+    public function machines()
     {
-        return $this->belongsTo('App\Machine');
+        return $this->belongsToMany('App\Machine');
     }
 }

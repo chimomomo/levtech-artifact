@@ -15,8 +15,12 @@
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
-       <p class = "model_name">
-            <a href="/machineindex">機種名(PC)</a>
-        </p>
+        <div class='machines'>
+            @foreach ($machines as $machine)
+                <div class='machine'>
+                    <h2 class='name'>{{ $machine->name }}</h2>
+                </div>
+            @endforeach
+        </div>
     </body>
 </html>

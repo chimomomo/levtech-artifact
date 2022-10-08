@@ -12,8 +12,8 @@ class GameController extends Controller
         return view('games/index')->with(['games' => $Game->getGame()]);
     }
     
-    public function show()
+    public function show(Game $Game)
     {
-        return view('games/show');  
+        return view('games/show')->with(['game' => $Game]);
     }
 }

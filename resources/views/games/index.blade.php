@@ -12,9 +12,6 @@
     </head>
     <body>
         <h1>トップページ</h1>
-        <p class = "show">
-            <a href="/games/show">ゲーム名(詳細)</a>
-        </p>
          <p class = "company">
             <a href="/companylist">会社名一覧</a>
         </p>
@@ -48,16 +45,29 @@
         <p class = "group">
             <a href="/groups">グループ一覧</a>
         </p>
-        <div class='posts'>
+        <div class='games'>
             @foreach ($games as $game)
                 <div class='game'>
-                    <h2 class='title'>{{ $game->name }}</h2>
+                    <h2 class='title'>
+                        <a href="/games/{{ $game->id }}">{{ $game->name }}</a>
+                    </h2>
                     <p class='comment'>{{ $game->comment}}</p>
-                    <p class='company'>{{ $game->company->name}}</p>
-                    <p class='genre'>{{ $game->genre->name}}</p>
-                    <p class='Machine'>{{ $game->machine->name}}</p>
+                    <p class='company'>
+                        <a href="/companies/{{ $game->company->id }}">{{ $game->company->name}}</a>
+                    </p>
+                    <p class='genre'>
+                        <a href="/genres/{{ $game->genre->id }}">{{ $game->genre->name}}</a>
+                    </p>
+                    <p class='machine'>
+                        @foreach($game->machines as $machine)
+                            <a href="/machines/{{ $machine->id }}">{{ $machine->name}}</a>
+                        @endforeach
+                    </p>
                 </div>
             @endforeach
         </div>
+        <div class = 'paginate'>
+           {{ $games->links() }}
+       </div>
     </body>
 </html>

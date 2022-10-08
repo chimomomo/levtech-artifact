@@ -12,13 +12,13 @@
 */
 
 Route::get('/', 'GameController@index');
-Route::get('/games/show', 'GameController@show');
+Route::get('/games/{game}', 'GameController@show');
 Route::get('/companylist', 'CompanyController@listup');
-Route::get('/companyindex', 'CompanyController@index');
+Route::get('/companies/{company}', 'CompanyController@index');
 Route::get('/machinelist', 'MachineController@listup');
-Route::get('/machineindex', 'MachineController@index');
+Route::get('/machines/{machine}', 'MachineController@index');
 Route::get('/genrelist', 'GenreController@listup');
-Route::get('/genreindex', 'GenreController@index');
+Route::get('/genres/{genre}', 'GenreController@index');
 Route::get('/reviews', 'ReviewController@index');
 Route::get('/reviews/show', 'ReviewController@show');
 Route::get('/reviews/create', 'ReviewController@create');

@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    public function listup()
+    public function listup(Genre $genre)
     {
-        return view('genres/list');  
+        return view('genres/list')->with(['genres' => $genre->get()]);
     }
     
-    public function index()
+    public function index(Genre $genre)
     {
-        return view('genres/index');  
+        return view('genres/index')->with(['games' => $genre->getByGenre()]);
     }
 }
