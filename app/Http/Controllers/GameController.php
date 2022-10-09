@@ -7,13 +7,18 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    public function index(Game $Game)
+    public function index(Game $game)
     {
-        return view('games/index')->with(['games' => $Game->getGame()]);
+        return view('games/index')->with(['games' => $game->getGame()]);
     }
     
-    public function show(Game $Game)
+    public function show(Game $game)
     {
-        return view('games/show')->with(['game' => $Game]);
+        return view('games/show')->with(['game' => $game]);
+    }
+    
+    public function reviewIndex(Game $game)
+    {
+        return view('games/review_index')->with(['reviews' => $game->getByReviewGame()]);
     }
 }

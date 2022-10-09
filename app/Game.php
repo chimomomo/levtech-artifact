@@ -11,6 +11,11 @@ class Game extends Model
         return $this::with('company', 'genre')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    public function getByReviewGame(int $limit_count = 5)
+    {
+         return $this->reviews()->with('game')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
     public function company()
     {
         return $this->belongsTo('App\Company');
@@ -22,5 +27,10 @@ class Game extends Model
     public function machines()
     {
         return $this->belongsToMany('App\Machine');
+    }
+    
+    public function reviews()   
+    {
+        return $this->hasMany('App\Review');  
     }
 }

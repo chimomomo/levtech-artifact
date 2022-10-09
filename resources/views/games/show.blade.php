@@ -15,6 +15,9 @@
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
+        <p class = "review">
+            <a href="/games/reviews/{{ $game->id }}">{{ $game->name }}のレビュー一覧</a>
+        </p>
         <h2 class="title">
             {{ $game->name }}
         </h2>

@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'GameController@index');
+Route::get('/', 'GameController@index')->middleware('auth');
 Route::get('/games/{game}', 'GameController@show');
+Route::get('/games/reviews/{game}', 'GameController@reviewIndex');
 Route::get('/companylist', 'CompanyController@listup');
 Route::get('/companies/{company}', 'CompanyController@index');
 Route::get('/machinelist', 'MachineController@listup');
@@ -20,9 +21,12 @@ Route::get('/machines/{machine}', 'MachineController@index');
 Route::get('/genrelist', 'GenreController@listup');
 Route::get('/genres/{genre}', 'GenreController@index');
 Route::get('/reviews', 'ReviewController@index');
-Route::get('/reviews/show', 'ReviewController@show');
 Route::get('/reviews/create', 'ReviewController@create');
-Route::get('/reviews/edit', 'ReviewController@edit');
+Route::get('/reviews/{review}/edit', 'ReviewController@edit');
+Route::put('/reviews/{review}', 'ReviewController@update');
+Route::delete('/reviews/{review}', 'ReviewController@delete');
+Route::get('/reviews/{review}', 'ReviewController@show');
+Route::post('/reviews', 'ReviewController@store');
 Route::get('/posts', 'PostController@index');
 Route::get('/posts/show', 'PostController@show');
 Route::get('/posts/create', 'PostController@create');
@@ -48,3 +52,5 @@ Route::get('/groups/show', 'GroupController@show');
 Route::get('/groups/create', 'GroupController@create');
 Route::get('/groups/edit', 'GroupController@edit');
 Route::get('/chats', 'ChatController@index');
+Auth::routes();
+
