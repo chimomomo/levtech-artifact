@@ -17,11 +17,9 @@ class CreateReviewsTable extends Migration
             $table->increments('id');
             $table->string('title', 50);
             $table->string('body', 200);
-            $table->float('stars', 2, 1)->default(0.0);
+            $table->integer('stars')->default(0.0);
             $table->integer('game_id')->unsigned();
-            $table->integer('company_id')->unsigned();
             $table->integer('machine_id')->unsigned();
-            $table->integer('genre_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
