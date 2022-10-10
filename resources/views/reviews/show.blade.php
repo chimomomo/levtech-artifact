@@ -21,7 +21,7 @@
          <p class = "create">
             <a href="/reviews/create">レビュー作成</a>
         </p>
-        <form action="/posts/{{ $review->id }}" id="form_delete" method="post">
+        <form action="/reviews/{{ $review->id }}" id="form_delete" method="post">
             @csrf
             @method('DELETE')
             <input type="submit" style="display:none">
@@ -46,7 +46,7 @@
                 <p class='stars'> ☆ {{ $review->stars }}</p>
                  <p class='body'>{{ $review->body }}</p>
                 <p class='updated_at'>{{ $review->updated_at}}</p>
-                </div>
+            </div>
         </div>
         <p class = "edit">
             <a href="/reviews/{{ $review->id }}/edit">レビュー編集</a>

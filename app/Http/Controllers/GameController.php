@@ -21,4 +21,24 @@ class GameController extends Controller
     {
         return view('games/review_index')->with(['reviews' => $game->getByReviewGame()]);
     }
+    
+    public function postIndex(Game $game)
+    {
+        return view('games/post_index')->with(['posts' => $game->getByPostGame()]);
+    }
+    
+    public function recruitIndex(Game $game)
+    {
+        return view('games/recruit_index')->with(['recruits' => $game->getByRecruitGame()]);
+    }
+    
+    public function bugIndex(Game $game)
+    {
+        return view('games/bug_index')->with(['bugs' => $game->getByBugGame()]);
+    }
+    
+    public function amendmentIndex(Game $game)
+    {
+        return view('games/amendment_index')->with(['amendments' => $game->getByAmendmentGame()]);
+    }
 }

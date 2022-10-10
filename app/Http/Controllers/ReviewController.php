@@ -8,7 +8,7 @@ use App\Machine;
 use App\User;
 
 use Illuminate\Http\Request;
-//use Illuminate\Http\Requests\ReviewRequest;
+//use App\Http\Requests\ReviewRequest;
 
 class ReviewController extends Controller
 {

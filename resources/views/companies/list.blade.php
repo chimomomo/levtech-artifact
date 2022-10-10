@@ -18,7 +18,9 @@
         <div class='companies'>
             @foreach ($companies as $company)
                 <div class='company'>
-                    <h2 class='name'>{{ $company->name }}</h2>
+                    <h2 class='name'>
+                        <a href="/companies/{{ $company->id }}">{{ $company->name }}</a>
+                    </h2>
                 </div>
             @endforeach
         </div>

@@ -18,6 +18,18 @@
         <p class = "review">
             <a href="/games/reviews/{{ $game->id }}">{{ $game->name }}のレビュー一覧</a>
         </p>
+        <p class = "post">
+            <a href="/games/posts/{{ $game->id }}">{{ $game->name }}の投稿一覧</a>
+        </p>
+        <p class = "recruit">
+            <a href="/games/recruits/{{ $game->id }}">{{ $game->name }}の募集一覧</a>
+        </p>
+        <p class = "bug">
+            <a href="/games/bugs/{{ $game->id }}">{{ $game->name }}のバグ投稿一覧</a>
+        </p>
+        <p class = "amendment">
+            <a href="/games/amendments/{{ $game->id }}">{{ $game->name }}の修正案一覧</a>
+        </p>
         <h2 class="title">
             {{ $game->name }}
         </h2>

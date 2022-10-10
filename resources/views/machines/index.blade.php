@@ -13,7 +13,9 @@
     <body>
         <h1>
             @foreach ($games as $game)
+                @if ($loop->index == 0)
                 {{ $game->machine->name}}のゲーム一覧
+                @endif
             @endforeach
         </h1>
         <p class = "top">

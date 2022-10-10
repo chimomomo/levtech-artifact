@@ -11,7 +11,12 @@
 
     </head>
     <body>
-        <h1>>修正案一覧</h1>
+        <h1>
+            @foreach ($amendments as $amendment)
+                @if ($loop->index == 0)
+                    {{ $amendment->game->name}}の修正案一覧
+                @endif
+            @endforeach</h1>
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
@@ -38,6 +43,5 @@
         <div class = 'paginate'>
            {{ $amendments->links() }}
         </div>
-        
     </body>
 </html>

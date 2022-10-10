@@ -11,14 +11,19 @@
 
     </head>
     <body>
-        <h1>バグ報告一覧</h1>
+        <h1>
+            @foreach ($bugs as $bug)
+                @if ($loop->index == 0)
+                    {{ $bug->game->name}}のバグ投稿一覧
+                @endif
+            @endforeach</h1>
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
         <p class = "create">
-            <a href="/bugs/create">バグ報告作成</a>
+            <a href="/bugs/create">バグ作成</a>
         </p>
-        <div class='bugs'>
+        <div class='posts'>
             @foreach ($bugs as $bug)
                 <div class='bug'>
                     <h2 class='users'>
@@ -38,6 +43,5 @@
         <div class = 'paginate'>
            {{ $bugs->links() }}
         </div>
-        
     </body>
 </html>
