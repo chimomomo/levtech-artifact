@@ -21,9 +21,40 @@
          <p class = "create">
             <a href="/amendments/create">修正案作成</a>
         </p>
-        <p class = "title">>修正案タイトル</p>
+        <form action="/amendments/{{ $amendment->id }}" id="form_delete" method="post">
+            @csrf
+            @method('DELETE')
+            <input type="submit" style="display:none">
+            <p class ='delete'>
+                [<span onclick="return deletePost(event);">delete</span>]
+            </p>
+        </form>
+        <div class='amendments'>
+            <div class='amendment'>
+                <h2 class='users'>
+                    <a href="/amendments/{{ $amendment->user->id }}">{{ $amendment->user->name }}</a>
+                </h2>
+                <h2 class='title'>
+                    <a href="/amendments/{{ $amendment->id }}">{{ $amendment->title }}</a>
+                </h2>
+                <p class='game'>
+                    <a href="/games/{{ $amendment->game->id }}">{{ $amendment->game->name}}</a>
+                </p>
+                <p class='body'>{{ $amendment->body }}</p>
+                <p class='updated_at'>{{ $amendment->updated_at}}</p>
+            </div>
+        </div>
         <p class = "edit">
-            <a href="/amendments/edit">修正案編集</a>
+            <a href="/amendments/{{ $amendment->id }}/edit">修正案編集</a>
         </p>
+        <script>
+        function deletePost(e) {
+            'use strict' ;
+            if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById('form_delete').submit() ;
+            }
+        }
+        </script>
+        
     </body>
 </html>

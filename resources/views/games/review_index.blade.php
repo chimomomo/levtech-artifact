@@ -11,7 +11,13 @@
 
     </head>
     <body>
-        <h1>レビュー一覧</h1>
+        <h1>
+            @foreach ($reviews as $review)
+                @if ($loop->index == 0)
+                    {{ $review->game->name}}のレビュー一覧
+                @endif
+            @endforeach
+        </h1>
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>

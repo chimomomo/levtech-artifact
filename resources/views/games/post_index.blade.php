@@ -11,33 +11,37 @@
 
     </head>
     <body>
-        <h1>バグ報告一覧</h1>
+        <h1>
+            @foreach ($posts as $post)
+                @if ($loop->index == 0)
+                    {{ $post->game->name}}の投稿一覧
+                @endif
+            @endforeach</h1>
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
         <p class = "create">
-            <a href="/bugs/create">バグ報告作成</a>
+            <a href="/posts/create">投稿作成</a>
         </p>
-        <div class='bugs'>
-            @foreach ($bugs as $bug)
-                <div class='bug'>
+        <div class='posts'>
+            @foreach ($posts as $post)
+                <div class='post'>
                     <h2 class='users'>
-                        <a href="/bugs/{{ $bug->user->id }}">{{ $bug->user->name }}</a>
+                        <a href="/posts/{{ $post->user->id }}">{{ $post->user->name }}</a>
                     </h2>
                     <h2 class='title'>
-                        <a href="/bugs/{{ $bug->id }}">{{ $bug->title }}</a>
+                        <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                     </h2>
                     <p class='game'>
-                        <a href="/games/{{ $bug->game->id }}">{{ $bug->game->name}}</a>
+                        <a href="/games/{{ $post->game->id }}">{{ $post->game->name}}</a>
                     </p>
-                    <p class='body'>{{ $bug->body }}</p>
-                    <p class='updated_at'>{{ $bug->updated_at}}</p>
+                    <p class='body'>{{ $post->body }}</p>
+                    <p class='updated_at'>{{ $post->updated_at}}</p>
                 </div>
             @endforeach
         </div>
         <div class = 'paginate'>
-           {{ $bugs->links() }}
+           {{ $posts->links() }}
         </div>
-        
     </body>
 </html>

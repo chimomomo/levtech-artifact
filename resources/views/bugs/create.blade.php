@@ -18,6 +18,30 @@
         <p class = "back">
             <a href="/bugs">バグ報告一覧へ</a>
         </p>
-        <p class = "title">バグ報告タイトル</p>
+        <form action="/bugs" method="POST">
+            @csrf
+            <div class="title">
+                <h2>バグ投稿タイトル</h2>
+                <input type="text" name="bug[title]" placeholder="タイトル"　value="{{ old('bug.title') }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('bug.title') }}</p>
+            </div>
+            <div class="user">
+                <input type="hidden" name="bug[user_id]" value="{{ Auth::user()->id }}"/>
+            </div>
+            <div class="game">
+                <h2>ゲーム名</h2>
+                <select name="bug[game_id]">
+                    @foreach($games as $game)
+                        <option value="{{ $game->id }}">{{ $game->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="body">
+                <h2>バグ投稿内容</h2>
+                <textarea name="bug[body]" placeholder="内容">{{ old('bug.body') }}</textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('bug.body') }}</p>
+            <input type="submit" value="保存"/>
+        </form>
+        <div class="back">[<a href="/">back</a>]</div>
     </body>
 </html>

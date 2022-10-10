@@ -18,6 +18,29 @@
          <p class = "back">
             <a href="/posts">投稿一覧へ</a>
         </p>
-        <p class = "title">投稿タイトル</p>
+        <form action="/posts/{{ $post->id }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="title">
+                <h2>投稿タイトル</h2>
+                <input type="text" name="post[title]" placeholder="タイトル"　value="{{ $post->title }}"/>
+            </div>
+            <div class="user">
+                <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}"/>
+            </div>
+            <div class="game">
+                <h2>ゲーム名</h2>
+                <select name="post[game_id]">
+                    @foreach($games as $game)
+                        <option value="{{ $game->id }}">{{ $game->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="body">
+                <h2>投稿内容</h2>
+                <textarea name="post[body]" placeholder="内容">{{ $post->body }}</textarea>
+            </div>
+            <input type="submit" value="更新"/>
+        </form>
     </body>
 </html>

@@ -13,6 +13,26 @@ class User extends Authenticatable
         return $this->hasMany('App\Review');  
     }
     
+    public function posts()   
+    {
+        return $this->hasMany('App\Post');  
+    }
+    
+    public function recruits()   
+    {
+        return $this->hasMany('App\Recruit');  
+    }
+    
+    public function bugs()   
+    {
+        return $this->hasMany('App\Bug');  
+    }
+    
+    public function amendments()   
+    {
+        return $this->hasMany('App\Amendment');  
+    }
+    
     use Notifiable;
 
     /**

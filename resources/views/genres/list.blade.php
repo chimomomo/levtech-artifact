@@ -18,7 +18,9 @@
         <div class='genres'>
             @foreach ($genres as $genre)
                 <div class='genre'>
-                    <h2 class='name'>{{ $genre->name }}</h2>
+                    <h2 class='name'>
+                        <a href="/genres/{{ $genre->id }}">{{ $genre->name }}</a>
+                    </h2>
                 </div>
             @endforeach
         </div>

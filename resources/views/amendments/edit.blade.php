@@ -18,6 +18,29 @@
          <p class = "back">
             <a href="/amendments">修正案一覧へ</a>
         </p>
-        <p class = "title">修正案タイトル</p>
+        <form action="/amendments/{{ $amendment->id }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="title">
+                <h2>修正案タイトル</h2>
+                <input type="text" name="amendment[title]" placeholder="タイトル"　value="{{ $amendment->title }}"/>
+            </div>
+            <div class="user">
+                <input type="hidden" name="amendment[user_id]" value="{{ Auth::user()->id }}"/>
+            </div>
+            <div class="game">
+                <h2>ゲーム名</h2>
+                <select name="amendment[game_id]">
+                    @foreach($games as $game)
+                        <option value="{{ $game->id }}">{{ $game->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="body">
+                <h2>修正案内容</h2>
+                <textarea name="amendment[body]" placeholder="内容">{{ $amendment->body }}</textarea>
+            </div>
+            <input type="submit" value="更新"/>
+        </form>
     </body>
 </html>

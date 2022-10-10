@@ -21,9 +21,39 @@
          <p class = "create">
             <a href="/recruits/create">募集作成</a>
         </p>
-        <p class = "title">募集タイトル</p>
+        <form action="/recruits/{{ $recruit->id }}" id="form_delete" method="post">
+            @csrf
+            @method('DELETE')
+            <input type="submit" style="display:none">
+            <p class ='delete'>
+                [<span onclick="return deletePost(event);">delete</span>]
+            </p>
+        </form>
+        <div class='recruits'>
+            <div class='recruit'>
+                <h2 class='users'>
+                    <a href="/recruits/{{ $recruit->user->id }}">{{ $recruit->user->name }}</a>
+                </h2>
+                <h2 class='title'>
+                    <a href="/recruits/{{ $recruit->id }}">{{ $recruit->title }}</a>
+                </h2>
+                <p class='game'>
+                    <a href="/games/{{ $recruit->game->id }}">{{ $recruit->game->name}}</a>
+                </p>
+                <p class='body'>{{ $recruit->body }}</p>
+                <p class='updated_at'>{{ $recruit->updated_at}}</p>
+            </div>
+        </div>
         <p class = "edit">
-            <a href="/recruits/edit">募集編集</a>
+            <a href="/recruits/{{ $recruit->id }}/edit">募集編集</a>
         </p>
+        <script>
+        function deletePost(e) {
+            'use strict' ;
+            if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById('form_delete').submit() ;
+            }
+        }
+        </script>
     </body>
 </html>

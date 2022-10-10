@@ -12,7 +12,11 @@
     </head>
     <body>
         <h1>
-            
+            @foreach ($games as $game)
+                @if ($loop->index == 0)
+                    {{ $game->company->name}}のゲーム一覧
+                @endif
+            @endforeach
         </h1>
         <p class = "top">
             <a href="/">トップページへ</a>

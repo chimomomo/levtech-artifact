@@ -18,9 +18,26 @@
         <p class = "create">
             <a href="/recruits/create">募集作成</a>
         </p>
-        <p class = "title">
-            <a href="/recruits/show">募集タイトル</a>
-        </p>
+        <div class='recruits'>
+            @foreach ($recruits as $recruit)
+                <div class='recruit'>
+                    <h2 class='users'>
+                        <a href="/recruits/{{ $recruit->user->id }}">{{ $recruit->user->name }}</a>
+                    </h2>
+                    <h2 class='title'>
+                        <a href="/recruits/{{ $recruit->id }}">{{ $recruit->title }}</a>
+                    </h2>
+                    <p class='game'>
+                        <a href="/games/{{ $recruit->game->id }}">{{ $recruit->game->name}}</a>
+                    </p>
+                    <p class='body'>{{ $recruit->body }}</p>
+                    <p class='updated_at'>{{ $recruit->updated_at}}</p>
+                </div>
+            @endforeach
+        </div>
+        <div class = 'paginate'>
+           {{ $recruits->links() }}
+        </div>
         
     </body>
 </html>
