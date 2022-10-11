@@ -18,6 +18,26 @@
          <p class = "back">
             <a href="/mypage">マイページへ</a>
         </p>
-        <p class = "title">>マイページタイトル</p>
+        <form action="/mypage/{{ $user->id }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="name">
+                <h2>名前</h2>
+                <input type="text" name="user[name]" placeholder="名前"　value="{{ $user->name }}"/>
+            </div>
+            <div class="age">
+                <h2>年齢</h2>
+                <input type="text" name="user[age]" placeholder="年齢(整数)"　value="{{ $user->age }}"/>
+            </div>
+            <div class="sex">
+                <h2>性別</h2>
+                <input type="text" name="user[sex]" placeholder="性別"　value="{{ $user->sex }}"/>
+            </div>
+            <div class="comment">
+                <h2>コメント</h2>
+                <textarea name="user[comment]" placeholder="内容">{{ $user->comment }}</textarea>
+            </div>
+            <input type="submit" value="更新"/>
+        </form>
     </body>
 </html>
