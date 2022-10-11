@@ -40,7 +40,7 @@
             <a href="/amendments">修正案一覧</a>
         </p>
         <p class = "mypage">
-            <a href="/mypage">マイページ</a>
+            <a href="/mypage/{{ auth::user()->id }}">マイページ</a>
         </p>
         <p class = "friend">
             <a href="/friends">フレンド一覧</a>

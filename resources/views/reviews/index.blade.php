@@ -22,7 +22,7 @@
             @foreach ($reviews as $review)
                 <div class='review'>
                     <h2 class='users'>
-                        <a href="/reviews/{{ $review->user->id }}">{{ $review->user->name }}</a>
+                        <a href="/mypage/{{ $review->user->id }}">{{ $review->user->name }}</a>
                     </h2>
                     <h2 class='title'>
                         <a href="/reviews/{{ $review->id }}">{{ $review->title }}</a>

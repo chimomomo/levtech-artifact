@@ -15,10 +15,31 @@
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
-        <p class = "title">マイページタイトル</p>
-        <p class = "edit">
-            <a href="/mypage/edit">>マイページ編集</a>
-        </p>
-        
+        <div class='users'>
+            <div class='user'>
+                <h2 class='user'>
+                   {{ $user->name }}
+                </h2>
+                <div class='age'>
+                    <h4 class='age'>年齢</h4>
+                    <p class='age'>
+                        {{ $user->age }}
+                    </p>
+                </div>
+                <div class='sex'>
+                    <h4 class='sex'>性別</h4>
+                    <p class='sex'>
+                        {{ $user->sex }}
+                    </p>
+                </div>
+                <p class='comment'>{{ $user->comment }}</p>
+                <p class='updated_at'>{{ $user->updated_at}}</p>
+            </div>
+        </div>
+        {{--@if({{ Auth::user()->id }} == {{ $user->id }}) --}}
+            <p class = "edit">
+                <a href="/mypage/{{ $user->id }}/edit">編集</a>
+            </p>
+        {{--@endif --}}
     </body>
 </html>
