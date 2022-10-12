@@ -22,7 +22,7 @@
             @foreach ($recruits as $recruit)
                 <div class='recruit'>
                     <h2 class='users'>
-                        <a href="/recruits/{{ $recruit->user->id }}">{{ $recruit->user->name }}</a>
+                        <a href="/mypage/{{ $recruit->user->id }}">{{ $recruit->user->name }}</a>
                     </h2>
                     <h2 class='title'>
                         <a href="/recruits/{{ $recruit->id }}">{{ $recruit->title }}</a>

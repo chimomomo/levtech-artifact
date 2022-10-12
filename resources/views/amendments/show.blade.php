@@ -32,7 +32,7 @@
         <div class='amendments'>
             <div class='amendment'>
                 <h2 class='users'>
-                    <a href="/amendments/{{ $amendment->user->id }}">{{ $amendment->user->name }}</a>
+                    <a href="/mypage/{{ $amendment->user->id }}">{{ $amendment->user->name }}</a>
                 </h2>
                 <h2 class='title'>
                     <a href="/amendments/{{ $amendment->id }}">{{ $amendment->title }}</a>
@@ -44,9 +44,11 @@
                 <p class='updated_at'>{{ $amendment->updated_at}}</p>
             </div>
         </div>
+        @if(Auth::user()->id == $amendment->user->id )
         <p class = "edit">
             <a href="/amendments/{{ $amendment->id }}/edit">修正案編集</a>
         </p>
+        @endif
         <script>
         function deletePost(e) {
             'use strict' ;

@@ -22,7 +22,7 @@
             @foreach ($bugs as $bug)
                 <div class='bug'>
                     <h2 class='users'>
-                        <a href="/bugs/{{ $bug->user->id }}">{{ $bug->user->name }}</a>
+                        <a href="/mypage/{{ $bug->user->id }}">{{ $bug->user->name }}</a>
                     </h2>
                     <h2 class='title'>
                         <a href="/bugs/{{ $bug->id }}">{{ $bug->title }}</a>

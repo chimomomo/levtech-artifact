@@ -24,4 +24,29 @@ class UserController extends Controller
         $user->fill($input_user)->save();
         return redirect('/mypage/' . $user->id);
     }
+    
+    public function reviewIndex(User $user)
+    {
+        return view('users/review_index')->with(['reviews' => $user->getByReviewUser()]);
+    }
+    
+    public function postIndex(User $user)
+    {
+        return view('users/post_index')->with(['posts' => $user->getByPostUser()]);
+    }
+    
+    public function recruitIndex(User $user)
+    {
+        return view('users/recruit_index')->with(['recruits' => $user->getByRecruitUser()]);
+    }
+    
+    public function bugIndex(User $user)
+    {
+        return view('users/bug_index')->with(['bugs' => $user->getByBugUser()]);
+    }
+    
+    public function amendmentIndex(User $user)
+    {
+        return view('users/amendment_index')->with(['amendments' => $user->getByAmendmentUser()]);
+    }
 }
