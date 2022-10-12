@@ -36,10 +36,26 @@
                 <p class='updated_at'>{{ $user->updated_at}}</p>
             </div>
         </div>
-        {{--@if({{ Auth::user()->id }} == {{ $user->id }}) --}}
+        @if(Auth::user()->id == $user->id ) 
             <p class = "edit">
                 <a href="/mypage/{{ $user->id }}/edit">編集</a>
             </p>
-        {{--@endif --}}
+        @endif
+        
+        <p class = "review">
+            <a href="/mypage/reviews/{{ $user->id }}">{{ $user->name }}のレビュー一覧</a>
+        </p>
+        <p class = "post">
+            <a href="/mypage/posts/{{ $user->id }}">{{ $user->name }}の投稿一覧</a>
+        </p>
+        <p class = "recruit">
+            <a href="/mypage/recruits/{{ $user->id }}">{{ $user->name }}の募集一覧</a>
+        </p>
+        <p class = "bug">
+            <a href="/mypage/bugs/{{ $user->id }}">{{ $user->name }}のバグ投稿一覧</a>
+        </p>
+        <p class = "amendment">
+            <a href="/mypage/amendments/{{ $user->id }}">{{ $user->name }}の修正案一覧</a>
+        </p> 
     </body>
 </html>

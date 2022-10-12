@@ -32,7 +32,7 @@
         <div class='reviews'>
             <div class='review'>
                 <h2 class='users'>
-                    <a href="/reviews/{{ $review->user->id }}">{{ $review->user->name }}</a>
+                    <a href="/mypage/{{ $review->user->id }}">{{ $review->user->name }}</a>
                 </h2>
                 <h2 class='title'>
                     <a href="/reviews/{{ $review->id }}">{{ $review->title }}</a>
@@ -48,9 +48,11 @@
                 <p class='updated_at'>{{ $review->updated_at}}</p>
             </div>
         </div>
+        @if(Auth::user()->id == $reveiw->user->id )
         <p class = "edit">
             <a href="/reviews/{{ $review->id }}/edit">レビュー編集</a>
         </p>
+        @endif
         <script>
         function deletePost(e) {
             'use strict' ;

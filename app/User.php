@@ -8,6 +8,31 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function getByReviewUser(int $limit_count = 5)
+    {
+         return $this->reviews()->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function getByPostUser(int $limit_count = 5)
+    {
+         return $this->posts()->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function getByRecruitUser(int $limit_count = 5)
+    {
+         return $this->recruits()->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function getByBugUser(int $limit_count = 5)
+    {
+         return $this->bugs()->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function getByAmendmentUser(int $limit_count = 5)
+    {
+         return $this->amendments()->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
     public function reviews()   
     {
         return $this->hasMany('App\Review');  

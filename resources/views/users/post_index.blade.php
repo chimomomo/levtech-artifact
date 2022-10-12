@@ -22,7 +22,7 @@
             @foreach ($posts as $post)
                 <div class='post'>
                     <h2 class='users'>
-                        <a href="/mypage/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                        <a href="/posts/{{ $post->user->id }}">{{ $post->user->name }}</a>
                     </h2>
                     <h2 class='title'>
                         <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>

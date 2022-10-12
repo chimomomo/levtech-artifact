@@ -32,7 +32,7 @@
         <div class='bugs'>
             <div class='bug'>
                 <h2 class='users'>
-                    <a href="/bugs/{{ $bug->user->id }}">{{ $bug->user->name }}</a>
+                    <a href="/mypage/{{ $bug->user->id }}">{{ $bug->user->name }}</a>
                 </h2>
                 <h2 class='title'>
                     <a href="/bugs/{{ $bug->id }}">{{ $bug->title }}</a>
@@ -44,9 +44,11 @@
                 <p class='updated_at'>{{ $bug->updated_at}}</p>
             </div>
         </div>
+        @if(Auth::user()->id == $bug->user->id )
         <p class = "edit">
             <a href="/bugs/{{ $bug->id }}/edit">バグ投稿編集</a>
         </p>
+        @endif
         <script>
         function deletePost(e) {
             'use strict' ;

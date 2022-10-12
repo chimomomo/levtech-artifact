@@ -32,7 +32,7 @@
         <div class='posts'>
             <div class='post'>
                 <h2 class='users'>
-                    <a href="/posts/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                    <a href="/mypage/{{ $post->user->id }}">{{ $post->user->name }}</a>
                 </h2>
                 <h2 class='title'>
                     <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
@@ -44,9 +44,11 @@
                 <p class='updated_at'>{{ $post->updated_at}}</p>
             </div>
         </div>
+        @if(Auth::user()->id == $post->user->id )
         <p class = "edit">
             <a href="/posts/{{ $post->id }}/edit">投稿編集</a>
         </p>
+        @endif
         <script>
         function deletePost(e) {
             'use strict' ;

@@ -11,32 +11,32 @@
 
     </head>
     <body>
-        <h1>投稿一覧</h1>
+        <h1>募集一覧</h1>
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
         <p class = "create">
-            <a href="/posts/create">投稿作成</a>
+            <a href="/recruits/create">募集作成</a>
         </p>
-        <div class='posts'>
-            @foreach ($posts as $post)
-                <div class='post'>
+        <div class='recruits'>
+            @foreach ($recruits as $recruit)
+                <div class='recruit'>
                     <h2 class='users'>
-                        <a href="/mypage/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                        <a href="/recruits/{{ $recruit->user->id }}">{{ $recruit->user->name }}</a>
                     </h2>
                     <h2 class='title'>
-                        <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                        <a href="/recruits/{{ $recruit->id }}">{{ $recruit->title }}</a>
                     </h2>
                     <p class='game'>
-                        <a href="/games/{{ $post->game->id }}">{{ $post->game->name}}</a>
+                        <a href="/games/{{ $recruit->game->id }}">{{ $recruit->game->name}}</a>
                     </p>
-                    <p class='body'>{{ $post->body }}</p>
-                    <p class='updated_at'>{{ $post->updated_at}}</p>
+                    <p class='body'>{{ $recruit->body }}</p>
+                    <p class='updated_at'>{{ $recruit->updated_at}}</p>
                 </div>
             @endforeach
         </div>
         <div class = 'paginate'>
-           {{ $posts->links() }}
+           {{ $recruits->links() }}
         </div>
         
     </body>

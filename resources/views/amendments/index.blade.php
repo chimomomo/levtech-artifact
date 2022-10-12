@@ -22,7 +22,7 @@
             @foreach ($amendments as $amendment)
                 <div class='amendment'>
                     <h2 class='users'>
-                        <a href="/amendments/{{ $amendment->user->id }}">{{ $amendment->user->name }}</a>
+                        <a href="/mypage/{{ $amendment->user->id }}">{{ $amendment->user->name }}</a>
                     </h2>
                     <h2 class='title'>
                         <a href="/amendments/{{ $amendment->id }}">{{ $amendment->title }}</a>
