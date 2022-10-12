@@ -21,6 +21,7 @@
         <div class='reviews'>
             @foreach ($reviews as $review)
                 <div class='review'>
+                    <img src="{{ asset($review->user->image_name) }}" width="100" height="100">
                     <h2 class='users'>
                         <a href="/mypage/{{ $review->user->id }}">{{ $review->user->name }}</a>
                     </h2>

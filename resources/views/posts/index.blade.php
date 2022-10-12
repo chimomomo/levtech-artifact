@@ -21,6 +21,7 @@
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
+                    <img src="{{ asset($post->user->image_name) }}" width="100" height="100">
                     <h2 class='users'>
                         <a href="/mypage/{{ $post->user->id }}">{{ $post->user->name }}</a>
                     </h2>

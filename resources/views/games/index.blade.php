@@ -54,6 +54,7 @@
                     <h2 class='title'>
                         <a href="/games/{{ $game->id }}">{{ $game->name }}</a>
                     </h2>
+                    <img src="{{ asset('images/' . $game->image_name) }}" width="100" height="100">
                     <p class='comment'>{{ $game->comment}}</p>
                     <p class='company'>
                         <a href="/companies/{{ $game->company->id }}">{{ $game->company->name}}</a>

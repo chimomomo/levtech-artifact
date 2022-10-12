@@ -21,6 +21,7 @@
         <div class='recruits'>
             @foreach ($recruits as $recruit)
                 <div class='recruit'>
+                    <img src="{{ asset($recruit->user->image_name) }}" width="100" height="100">
                     <h2 class='users'>
                         <a href="/mypage/{{ $recruit->user->id }}">{{ $recruit->user->name }}</a>
                     </h2>

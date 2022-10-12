@@ -72,6 +72,7 @@ class User extends Authenticatable
         'age',
         'sex',
         'comment',
+        'image_name'
     ];
 
     /**

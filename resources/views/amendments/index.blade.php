@@ -21,6 +21,7 @@
         <div class='amendments'>
             @foreach ($amendments as $amendment)
                 <div class='amendment'>
+                    <img src="{{ asset($amendment->user->image_name) }}" width="100" height="100">
                     <h2 class='users'>
                         <a href="/mypage/{{ $amendment->user->id }}">{{ $amendment->user->name }}</a>
                     </h2>
