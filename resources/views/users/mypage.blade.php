@@ -17,7 +17,8 @@
         </p>
         <div class='users'>
             <div class='user'>
-                <h2 class='user'>
+                <img src="{{ asset($user->image_name) }}" width="100" height="100">
+                <h2 class='name'>
                    {{ $user->name }}
                 </h2>
                 <div class='age'>

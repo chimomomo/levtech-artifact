@@ -31,6 +31,7 @@
         </form>
         <div class='bugs'>
             <div class='bug'>
+                <img src="{{ asset($bug->user->image_name) }}" width="100" height="100">
                 <h2 class='users'>
                     <a href="/mypage/{{ $bug->user->id }}">{{ $bug->user->name }}</a>
                 </h2>

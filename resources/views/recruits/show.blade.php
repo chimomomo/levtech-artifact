@@ -32,6 +32,7 @@
         <div class='recruits'>
             <div class='recruit'>
                 <h2 class='users'>
+                    <img src="{{ asset($recruit->user->image_name) }}" width="100" height="100">
                     <a href="/mypage/{{ $recruit->user->id }}">{{ $recruit->user->name }}</a>
                 </h2>
                 <h2 class='title'>

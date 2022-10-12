@@ -16,11 +16,15 @@
             <a href="/">トップページへ</a>
         </p>
          <p class = "back">
-            <a href="/mypage">マイページへ</a>
+            <a href="/mypage/{{ $user->id }}">マイページへ</a>
         </p>
-        <form action="/mypage/{{ $user->id }}" method="POST">
+        <form action="/mypage/{{ $user->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+            <div class="image">
+                <h2>プロフィール画像</h2>
+                <input type="file" name="image">
+            </div>
             <div class="name">
                 <h2>名前</h2>
                 <input type="text" name="user[name]" placeholder="名前"　value="{{ $user->name }}"/>

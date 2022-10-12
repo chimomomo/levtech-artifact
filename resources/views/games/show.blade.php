@@ -33,6 +33,7 @@
         <h2 class="title">
             {{ $game->name }}
         </h2>
+        <img src="{{ asset('images/' . $game->image_name) }}" width="100" height="100">
         <div class="content">
             <div class="content_game">
                 <p>{{ $game->comment }}</p>
