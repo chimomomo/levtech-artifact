@@ -48,6 +48,12 @@
         <p class = "group">
             <a href="/groups">グループ一覧</a>
         </p>
+        <div>
+            <form action="/" method="GET">
+                <input type="text" name="keyword" value="{{ $keyword }}">
+                <input type="submit" value="検索">
+            </form>
+        </div>
         <div class='games'>
             @foreach ($games as $game)
                 <div class='game'>

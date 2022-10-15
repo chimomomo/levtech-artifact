@@ -15,13 +15,13 @@
         <p class = "top">
             <a href="/">トップページへ</a>
         </p>
-         <p class = "back">
+        <p class = "back">
             <a href="/posts">投稿一覧へ</a>
         </p>
-         <p class = "create">
+        <p class = "create">
             <a href="/posts/create">投稿作成</a>
         </p>
-        <form action="/posts/{{ $post->id }}" id="form_delete" method="post">
+        <form action="/posts/{{ $post->id }}" id="form_post_delete" method="post">
             @csrf
             @method('DELETE')
             <input type="submit" style="display:none">
@@ -46,15 +46,60 @@
             </div>
         </div>
         @if(Auth::user()->id == $post->user->id )
-        <p class = "edit">
-            <a href="/posts/{{ $post->id }}/edit">投稿編集</a>
-        </p>
+            <p class = "edit">
+                <a href="/posts/{{ $post->id }}/edit">投稿編集</a>
+            </p>
         @endif
+        
+        <form action="/posts/{{ $post->id }}/postcomments" method="POST">
+            @csrf
+            <div class="post">
+                <input type="hidden" name="post_id" value="{{ $post->id }}"/>
+            </div>
+            <div class="user">
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
+            </div>
+            <div class="comment">
+                <h2>投稿内容</h2>
+                <textarea name="postcomment" placeholder="内容">{{ old('post.postcomment.comment') }}</textarea>
+            <input type="submit" value="保存"/>
+        </form>
+        
+        <div class='postcomments'>
+            @foreach ($post->postcomments as $comment)
+                <div class='postcomment'>
+                    <img src="{{ asset($comment->user->image_name) }}" width="100" height="100">
+                    <h2 class='users'>
+                        <a href="/mypage/{{ $comment->user->id }}">{{ $comment->user->name }}</a>
+                    </h2>
+                    <p class='comment'>{{ $comment->comment }}</p>
+                    <p class='updated_at'>{{ $comment->updated_at}}</p>
+    
+                    @if(Auth::user()->id == $comment->user->id )
+                        <form action="/posts/postcomments/{{ $comment->id }}" id="form_comment_delete" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" style="display:none">
+                            <p class ='delete'>
+                                [<span onclick="return deleteComment(event);">コメント削除</span>]
+                            </p>
+                        </form>
+                    @endif
+                </div>
+            @endforeach
+        </div>
         <script>
         function deletePost(e) {
             'use strict' ;
             if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
-                document.getElementById('form_delete').submit() ;
+                document.getElementById('form_post_delete').submit() ;
+            }
+        }
+        
+        function deleteComment(e) {
+            'use strict' ;
+            if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById('form_comment_delete').submit() ;
             }
         }
         </script>

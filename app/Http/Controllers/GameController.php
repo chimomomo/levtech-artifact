@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    public function index(Game $game)
+    public function index(Request $request)
     {
-        return view('games/index')->with(['games' => $game->getGame()]);
+        $keyword = $request->input('keyword');
+
+        $query = Game::query();
+
+        if(!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('comment', 'LIKE', "%{$keyword}%");
+        }
+
+        $game = $query->with('company', 'genre')->orderBy('updated_at', 'DESC')->paginate(5);
+        return view('games/index')->with(['games' => $game, 'keyword' => $keyword]);
     }
     
     public function show(Game $game)

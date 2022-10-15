@@ -6,11 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    public function getGame(int $limit_count = 5)
-    {
-        return $this::with('company', 'genre')->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
-    
     public function getByReviewGame(int $limit_count = 5)
     {
          return $this->reviews()->with('game')->orderBy('updated_at', 'DESC')->paginate($limit_count);
