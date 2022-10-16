@@ -20,12 +20,16 @@ class UserController extends Controller
     
     public function update(Request $request, User $user)
     {
-        $dir = 'users';
-        $file_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
-        $user->image_name = 'storage/' . $dir . '/' . $file_name;
-        $user->save();
-        
+        if($request->has('image')){
+            $dir = 'users';
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+            $user->image_name = 'storage/' . $dir . '/' . $file_name;
+            $user->save();
+        }else{
+            $user->image_name = '/images/noimage.jpg';
+            $user->save();
+        }
         $input_user = $request['user'];
         $user->fill($input_user)->save();
         return redirect('/mypage/' . $user->id);

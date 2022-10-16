@@ -42,14 +42,28 @@
                     <a href="/games/{{ $post->game->id }}">{{ $post->game->name}}</a>
                 </p>
                 <p class='body'>{{ $post->body }}</p>
+                @if($post->image_name != null)
+                    <img src="{{ asset($post->image_name) }}" width="100" height="100">
+                @endif
+                @if($post->video_name != null)
+                    <video src="{{ asset($post->video_name) }}" width="300" height="300" controls>
+                @endif
                 <p class='updated_at'>{{ $post->updated_at}}</p>
             </div>
+            <div class = 'like'>
+                @if($post->is_liked_by_auth_user())
+                    <a href="{{ route('post.unlike', ['id' => $post->id]) }}" >いいね！<span class="badge">{{ $post->postlikes->count() }}</span></a>
+                @else
+                    <a href="{{ route('post.like', ['id' => $post->id]) }}" >いいね！<span class="badge">{{ $post->postlikes->count() }}</span></a>
+                @endif
+            </div>
         </div>
-        @if(Auth::user()->id == $post->user->id )
-            <p class = "edit">
-                <a href="/posts/{{ $post->id }}/edit">投稿編集</a>
-            </p>
-        @endif
+            @if(Auth::user()->id == $post->user->id )
+                <p class = "edit">
+                    <a href="/posts/{{ $post->id }}/edit">投稿編集</a>
+                </p>
+            @endif
+        </div>
         
         <form action="/posts/{{ $post->id }}/postcomments" method="POST">
             @csrf

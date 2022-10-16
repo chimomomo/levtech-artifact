@@ -32,6 +32,13 @@
                         <a href="/games/{{ $post->game->id }}">{{ $post->game->name}}</a>
                     </p>
                     <p class='body'>{{ $post->body }}</p>
+                    @if($post->image_name != null)
+                        <img src="{{ asset($post->image_name) }}" width="100" height="100">
+                    @endif
+                    @if($post->video_name != null)
+                        <video src="{{ asset($post->video_name) }}" width="300" height="300" controls>
+                    @endif
+                    <p class='lile'>いいね！{{ $post->postlikes->count() }}</p>
                     <p class='updated_at'>{{ $post->updated_at}}</p>
                 </div>
             @endforeach
