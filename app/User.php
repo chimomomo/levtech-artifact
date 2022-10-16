@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany('App\PostComment');
     }
     
+    public function postLikes()
+    {
+        return $this->hasMany('App\PostLike');
+    }
+    
     use Notifiable;
 
     /**

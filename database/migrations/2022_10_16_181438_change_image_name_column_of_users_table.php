@@ -14,7 +14,7 @@ class ChangeImageNameColumnOfUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('image_name', 200)->default('/images/noimage,jpg')->change();
+            $table->string('image_name', 200)->default('/images/noimage.jpg')->change();
         });
     }
 

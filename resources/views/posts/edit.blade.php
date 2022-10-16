@@ -18,7 +18,7 @@
          <p class = "back">
             <a href="/posts">投稿一覧へ</a>
         </p>
-        <form action="/posts/{{ $post->id }}" method="POST">
+        <form action="/posts/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="title">
@@ -39,6 +39,14 @@
             <div class="body">
                 <h2>投稿内容</h2>
                 <textarea name="post[body]" placeholder="内容">{{ $post->body }}</textarea>
+            </div>
+            <div class="image">
+                <h2>投稿画像</h2>
+                <input type="file" name="image">
+            </div>
+            <div class="video">
+                <h2>投稿動画</h2>
+                <input type="file" name="video">
             </div>
             <input type="submit" value="更新"/>
         </form>
