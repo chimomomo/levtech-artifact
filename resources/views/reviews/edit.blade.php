@@ -24,6 +24,7 @@
             <div class="title">
                 <h2>レビュータイトル</h2>
                 <input type="text" name="review[title]" placeholder="タイトル"　value="{{ $review->title }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('review.title') }}</p>
             </div>
             <div class="user">
                 <input type="hidden" name="review[user_id]" value="{{ Auth::user()->id }}"/>
@@ -47,10 +48,12 @@
             <div class="stars">
                 <h2>星</h2>
                 <textarea name="review[stars]" placeholder="0～5の整数">{{ $review->stars }}</textarea>
+                <p class="stars__error" style="color:red">{{ $errors->first('review.stars') }}</p>
             </div>
             <div class="body">
                 <h2>レビュー内容</h2>
                 <textarea name="review[body]" placeholder="内容">{{ $review->body }}</textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('review.body') }}</p>
             </div>
             <input type="submit" value="更新"/>
         </form>

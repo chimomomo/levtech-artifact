@@ -62,7 +62,7 @@ class PostController extends Controller
             $request->file('image')->storeAs('public/' . $dir, $file_image_name);
             $post->image_name = 'storage/' . $dir . '/' . $file_image_name;
             $post->save();
-        
+        }
         
         if($request->has('video')){
             $dir = 'posts';
