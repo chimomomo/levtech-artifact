@@ -11,14 +11,10 @@ class Machine extends Model
         return $this->belongsToMany('App\Game');  
     }
     
-    public function reviews()   
-    {
-        return $this->hasMany('App\Review');  
-    }
-    
     public function getByMachine(int $limit_count = 5)
     {
-         return $this->games()->with('machine')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+         return $this->games()->with('machines')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
-    
 }
+
+//with('machine')

@@ -49,7 +49,7 @@
                 <p class='updated_at'>{{ $review->updated_at}}</p>
             </div>
         </div>
-        @if(Auth::user()->id == $reveiw->user->id )
+        @if(Auth::user()->id == $review->user->id )
         <p class = "edit">
             <a href="/reviews/{{ $review->id }}/edit">レビュー編集</a>
         </p>
