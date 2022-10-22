@@ -54,8 +54,4 @@ class Post extends Model
         }
     }
     
-    public function getPost(int $limit_count = 5)
-    {
-        return $this::with('game')->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
 }

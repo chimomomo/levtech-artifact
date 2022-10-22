@@ -18,6 +18,12 @@
         <p class = "create">
             <a href="/posts/create">投稿作成</a>
         </p>
+        <div class='search'>
+            <form action="/posts" method="GET">
+                <input type="text" name="keyword" value="{{ $keyword }}">
+                <input type="submit" value="検索">
+            </form>
+        </div>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>

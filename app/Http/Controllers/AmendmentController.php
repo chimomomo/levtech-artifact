@@ -10,9 +10,19 @@ use Illuminate\Http\Request;
 
 class AmendmentController extends Controller
 {
-    public function index(Amendment $amendment)
+    public function index(Request $request)
     {
-        return view('amendments/index')->with(['amendments' => $amendment->getAmendment()]);  
+        $keyword = $request->input('keyword');
+
+        $query = Amendment::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('body', 'LIKE', "%{$keyword}%");
+        }
+
+        $amendment = $query->with('game', 'user')->orderBy('updated_at', 'DESC')->paginate(5);
+        return view('amendments/index')->with(['amnedments' => $amendment, 'keyword' => $keyword]);
     }
     
     public function show(Amendment $amendment)
@@ -29,6 +39,15 @@ class AmendmentController extends Controller
     {
         $input = $request['amendment'];
         $amendment->fill($input)->save();
+        
+        if($request->has('image')){
+            $dir = 'amendments';
+            $file_image_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
+            $amendment->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $amendment->save();
+        }
+        
         return redirect('/amendments/' . $amendment->id);
     }
     
@@ -41,6 +60,18 @@ class AmendmentController extends Controller
     {
         $input_amendment = $request['amendment'];
         $amendment->fill($input_amendment)->save();
+        
+        if($request->has('image')){
+            $dir = 'amendments';
+            $file_image_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
+            $amendment->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $amendment->save();
+        }else{
+            $amendment->image_name = NULL;
+            $amendment->save();
+        }
+        
         return redirect('/amendments/' . $amendment->id);
     }
     

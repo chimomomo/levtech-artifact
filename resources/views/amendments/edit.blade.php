@@ -18,7 +18,7 @@
          <p class = "back">
             <a href="/amendments">修正案一覧へ</a>
         </p>
-        <form action="/amendments/{{ $amendment->id }}" method="POST">
+        <form action="/amendments/{{ $amendment->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="title">
@@ -39,6 +39,10 @@
             <div class="body">
                 <h2>修正案内容</h2>
                 <textarea name="amendment[body]" placeholder="内容">{{ $amendment->body }}</textarea>
+            </div>
+            <div class="image">
+                <h2>投稿画像</h2>
+                <input type="file" name="image">
             </div>
             <input type="submit" value="更新"/>
         </form>

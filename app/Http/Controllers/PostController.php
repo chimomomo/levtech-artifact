@@ -10,9 +10,19 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index(Request $request)
     {
-        return view('posts/index')->with(['posts' => $post->getPost()]);  
+        $keyword = $request->input('keyword');
+
+        $query = Post::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('body', 'LIKE', "%{$keyword}%");
+        }
+
+        $post = $query->with('game', 'user')->orderBy('updated_at', 'DESC')->paginate(5);
+        return view('posts/index')->with(['posts' => $post, 'keyword' => $keyword]);  
     }
     
     public function show(Post $post)
@@ -61,6 +71,9 @@ class PostController extends Controller
             $file_image_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dir, $file_image_name);
             $post->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $post->save();
+        }else{
+            $post->image_name = NULL;
             $post->save();
         }
         

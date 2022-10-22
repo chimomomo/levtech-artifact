@@ -18,7 +18,7 @@
         <p class = "back">
             <a href="/recruits">募集一覧へ</a>
         </p>
-        <form action="/recruits" method="POST">
+        <form action="/recruits" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
                 <h2>募集タイトル</h2>
@@ -40,6 +40,11 @@
                 <h2>募集内容</h2>
                 <textarea name="recruit[body]" placeholder="内容">{{ old('recruit.body') }}</textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('recruit.body') }}</p>
+            </div>
+            <div class="image">
+                <h2>投稿画像</h2>
+                <input type="file" name="image">
+            </div>
             <input type="submit" value="保存"/>
         </form>
         <div class="back">[<a href="/">back</a>]</div>

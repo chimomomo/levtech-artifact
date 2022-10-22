@@ -10,9 +10,19 @@ use Illuminate\Http\Request;
 
 class RecruitController extends Controller
 {
-    public function index(Recruit $recruit)
+    public function index(Request $request)
     {
-        return view('recruits/index')->with(['recruits' => $recruit->getRecruit()]);  
+        $keyword = $request->input('keyword');
+
+        $query = Recruit::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('body', 'LIKE', "%{$keyword}%");
+        }
+
+        $recruit = $query->with('game', 'user')->orderBy('updated_at', 'DESC')->paginate(5);
+        return view('recruits/index')->with(['recruits' => $recruit, 'keyword' => $keyword]); 
     }
     
     public function show(Recruit $recruit)
@@ -29,6 +39,15 @@ class RecruitController extends Controller
     {
         $input = $request['recruit'];
         $recruit->fill($input)->save();
+        
+        if($request->has('image')){
+            $dir = 'recruits';
+            $file_image_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
+            $recruit->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $recruit->save();
+        }
+        
         return redirect('/recruits/' . $recruit->id);
     }
     
@@ -41,6 +60,18 @@ class RecruitController extends Controller
     {
         $input_recruit = $request['recruit'];
         $recruit->fill($input_recruit)->save();
+        
+        if($request->has('image')){
+            $dir = 'recruits';
+            $file_image_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
+            $recruit->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $recruit->save();
+        }else{
+            $recruit->image_name = NULL;
+            $recruit->save();
+        }
+        
         return redirect('/recruits/' . $recruit->id);
     }
     

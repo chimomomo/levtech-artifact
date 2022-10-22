@@ -18,6 +18,12 @@
         <p class = "create">
             <a href="/bugs/create">バグ報告作成</a>
         </p>
+        <div class='search'>
+            <form action="/bugs" method="GET">
+                <input type="text" name="keyword" value="{{ $keyword }}">
+                <input type="submit" value="検索">
+            </form>
+        </div>
         <div class='bugs'>
             @foreach ($bugs as $bug)
                 <div class='bug'>
@@ -32,6 +38,12 @@
                         <a href="/games/{{ $bug->game->id }}">{{ $bug->game->name}}</a>
                     </p>
                     <p class='body'>{{ $bug->body }}</p>
+                    @if($bug->image_name != null)
+                        <img src="{{ asset($bug->image_name) }}" width="100" height="100">
+                    @endif
+                    @if($bug->video_name != null)
+                        <video src="{{ asset($bug->video_name) }}" width="300" height="300" controls>
+                    @endif
                     <p class='updated_at'>{{ $bug->updated_at}}</p>
                 </div>
             @endforeach

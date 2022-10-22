@@ -18,7 +18,7 @@
          <p class = "back">
             <a href="/recruits">募集一覧へ</a>
         </p>
-        <form action="/recruits/{{ $recruit->id }}" method="POST">
+        <form action="/recruits/{{ $recruit->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="title">
@@ -39,6 +39,10 @@
             <div class="body">
                 <h2>募集内容</h2>
                 <textarea name="recruit[body]" placeholder="内容">{{ $recruit->body }}</textarea>
+            </div>
+            <div class="image">
+                <h2>投稿画像</h2>
+                <input type="file" name="image">
             </div>
             <input type="submit" value="更新"/>
         </form>
