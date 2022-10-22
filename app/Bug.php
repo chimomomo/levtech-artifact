@@ -14,6 +14,8 @@ class Bug extends Model
         'user_id',
         'game_id',
         'body',
+        'image_name',
+        'video_name'
     ];
     public function game()
     {
@@ -25,8 +27,4 @@ class Bug extends Model
         return $this->belongsTo('App\User');
     }
     
-    public function getBug(int $limit_count = 5)
-    {
-        return $this::with('game')->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
 }

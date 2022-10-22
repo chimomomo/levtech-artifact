@@ -18,7 +18,7 @@
          <p class = "back">
             <a href="/bugs">バグ報告一覧へ</a>
         </p>
-        <form action="/bugs/{{ $bug->id }}" method="POST">
+        <form action="/bugs/{{ $bug->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="title">
@@ -39,6 +39,14 @@
             <div class="body">
                 <h2>バグ投稿内容</h2>
                 <textarea name="bug[body]" placeholder="内容">{{ $bug->body }}</textarea>
+            </div>
+            <div class="image">
+                <h2>投稿画像</h2>
+                <input type="file" name="image">
+            </div>
+            <div class="video">
+                <h2>投稿動画</h2>
+                <input type="file" name="video">
             </div>
             <input type="submit" value="更新"/>
         </form>

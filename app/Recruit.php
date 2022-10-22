@@ -14,6 +14,7 @@ class Recruit extends Model
         'user_id',
         'game_id',
         'body',
+        'image_name'
     ];
     public function game()
     {
@@ -25,8 +26,4 @@ class Recruit extends Model
         return $this->belongsTo('App\User');
     }
     
-    public function getRecruit(int $limit_count = 5)
-    {
-        return $this::with('game')->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
 }

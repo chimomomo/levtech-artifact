@@ -18,6 +18,12 @@
         <p class = "create">
             <a href="/recruits/create">募集作成</a>
         </p>
+        <div class='search'>
+            <form action="/recruits" method="GET">
+                <input type="text" name="keyword" value="{{ $keyword }}">
+                <input type="submit" value="検索">
+            </form>
+        </div>
         <div class='recruits'>
             @foreach ($recruits as $recruit)
                 <div class='recruit'>
@@ -32,6 +38,9 @@
                         <a href="/games/{{ $recruit->game->id }}">{{ $recruit->game->name}}</a>
                     </p>
                     <p class='body'>{{ $recruit->body }}</p>
+                    @if($recruit->image_name != null)
+                        <img src="{{ asset($recruit->image_name) }}" width="100" height="100">
+                    @endif
                     <p class='updated_at'>{{ $recruit->updated_at}}</p>
                 </div>
             @endforeach

@@ -48,7 +48,7 @@
         <p class = "group">
             <a href="/groups">グループ一覧</a>
         </p>
-        <div>
+        <div class='search'>
             <form action="/" method="GET">
                 <input type="text" name="keyword" value="{{ $keyword }}">
                 <input type="submit" value="検索">

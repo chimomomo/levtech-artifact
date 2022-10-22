@@ -42,6 +42,9 @@
                     <a href="/games/{{ $amendment->game->id }}">{{ $amendment->game->name}}</a>
                 </p>
                 <p class='body'>{{ $amendment->body }}</p>
+                @if($amendment->image_name != null)
+                    <img src="{{ asset($amendment->image_name) }}" width="100" height="100">
+                @endif
                 <p class='updated_at'>{{ $amendment->updated_at}}</p>
             </div>
         </div>

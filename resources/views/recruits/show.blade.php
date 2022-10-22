@@ -42,6 +42,9 @@
                     <a href="/games/{{ $recruit->game->id }}">{{ $recruit->game->name}}</a>
                 </p>
                 <p class='body'>{{ $recruit->body }}</p>
+                @if($recruit->image_name != null)
+                    <img src="{{ asset($recruit->image_name) }}" width="100" height="100">
+                @endif
                 <p class='updated_at'>{{ $recruit->updated_at}}</p>
             </div>
         </div>
