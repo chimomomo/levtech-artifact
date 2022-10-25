@@ -49,6 +49,13 @@
                     <video src="{{ asset($bug->video_name) }}" width="300" height="300" controls>
                 @endif
                 <p class='updated_at'>{{ $bug->updated_at}}</p>
+                <div class = 'like'>
+                @if($bug->is_bug_liked_by_auth_user())
+                    <a href="{{ route('bug.unlike', ['id' => $bug->id]) }}" >いいね！<span class="badge">{{ $bug->buglikes->count() }}</span></a>
+                @else
+                    <a href="{{ route('bug.like', ['id' => $bug->id]) }}" >いいね！<span class="badge">{{ $bug->buglikes->count() }}</span></a>
+                @endif
+            </div>
             </div>
         </div>
         @if(Auth::user()->id == $bug->user->id )
@@ -56,11 +63,57 @@
             <a href="/bugs/{{ $bug->id }}/edit">バグ投稿編集</a>
         </p>
         @endif
+        
+        <form action="/bugs/{{ $bug->id }}/bugcomments" method="POST">
+            @csrf
+            <div class="bug">
+                <input type="hidden" name="bug_id" value="{{ $bug->id }}"/>
+            </div>
+            <div class="user">
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
+            </div>
+            <div class="comment">
+                <h2>投稿内容</h2>
+                <textarea name="bugcomment" placeholder="内容">{{ old('bug.bugcomment.comment') }}</textarea>
+                <p class="comment__error" style="color:red">{{ $errors->first('bug.bugcomment.comment') }}</p>
+            <input type="submit" value="保存"/>
+        </form>
+        
+        <div class='bugcomments'>
+            @foreach ($bug->bugcomments as $comment)
+                <div class='bugcomment'>
+                    <img src="{{ asset($comment->user->image_name) }}" width="100" height="100">
+                    <h2 class='users'>
+                        <a href="/mypage/{{ $comment->user->id }}">{{ $comment->user->name }}</a>
+                    </h2>
+                    <p class='comment'>{{ $comment->comment }}</p>
+                    <p class='updated_at'>{{ $comment->updated_at}}</p>
+    
+                    @if(Auth::user()->id == $comment->user->id )
+                        <form action="/bugs/bugcomments/{{ $comment->id }}" id="form_comment_delete" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" style="display:none">
+                            <p class ='delete'>
+                                [<span onclick="return deleteComment(event);">コメント削除</span>]
+                            </p>
+                        </form>
+                    @endif
+                </div>
+            @endforeach
+        </div>
         <script>
         function deletePost(e) {
             'use strict' ;
             if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
                 document.getElementById('form_delete').submit() ;
+            }
+        }
+        
+        function deleteComment(e) {
+            'use strict' ;
+            if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById('form_comment_delete').submit() ;
             }
         }
         </script>

@@ -45,9 +45,6 @@
         <p class = "friend">
             <a href="/friends">フレンド一覧</a>
         </p>
-        <p class = "group">
-            <a href="/groups">グループ一覧</a>
-        </p>
         <div class='search'>
             <form action="/" method="GET">
                 <input type="text" name="keyword" value="{{ $keyword }}">

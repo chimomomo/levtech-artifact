@@ -14,8 +14,14 @@ class CreateBugCommentsTable extends Migration
     public function up()
     {
         Schema::create('bug_comments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('comment', 200);
+            $table->string('video_name', 200)->nullable();
+            $table->string('image_name', 200)->nullable();
+            $table->integer('bug_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

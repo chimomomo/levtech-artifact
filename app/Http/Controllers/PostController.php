@@ -6,7 +6,7 @@ use App\Post;
 use App\Game;
 use App\User;
 use Illuminate\Http\Request;
-//use Illuminate\Http\Requests\PostRequest;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -35,7 +35,7 @@ class PostController extends Controller
         return view('/posts/create')->with(['games' => $game->get()]);
     }
     
-    public function store(Request $request, Post $post)
+    public function store(PostRequest $request, Post $post)
     {
         $input = $request['post'];
         $post->fill($input)->save();
@@ -64,7 +64,7 @@ class PostController extends Controller
         return view('posts/edit')->with(['post' => $post, 'games' => $game->get()]);
     }
     
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         if($request->has('image')){
             $dir = 'posts';

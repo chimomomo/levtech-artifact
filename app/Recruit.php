@@ -26,4 +26,8 @@ class Recruit extends Model
         return $this->belongsTo('App\User');
     }
     
+    public function recruitComments()
+    {
+        return $this->hasMany('App\RecruitComment');
+    }
 }

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\PostComment;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostCommentRequest;
 
 class PostCommentController extends Controller
 {
 
-   public function store(Request $request)
+   public function store(PostCommentRequest $request)
    {
        $post_comment = new PostComment();
        $post_comment->comment = $request->postcomment;

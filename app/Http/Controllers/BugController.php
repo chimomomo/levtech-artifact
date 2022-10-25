@@ -6,7 +6,7 @@ use App\Bug;
 use App\Game;
 use App\User;
 use Illuminate\Http\Request;
-//use Illuminate\Http\Requests\BugRequest;
+use App\Http\Requests\BugRequest;
 
 class BugController extends Controller
 {
@@ -35,7 +35,7 @@ class BugController extends Controller
         return view('/bugs/create')->with(['games' => $game->get()]);
     }
     
-    public function store(Request $request, Bug $bug)
+    public function store(BugRequest $request, Bug $bug)
     {
         $input = $request['bug'];
         $bug->fill($input)->save();
@@ -64,7 +64,7 @@ class BugController extends Controller
         return view('bugs/edit')->with(['bug' => $bug, 'games' => $game->get()]);
     }
     
-    public function update(Request $request, Bug $bug)
+    public function update(BugRequest $request, Bug $bug)
     {
         $input_bug = $request['bug'];
         $bug->fill($input_bug)->save();

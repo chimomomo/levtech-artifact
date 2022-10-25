@@ -6,7 +6,7 @@ use App\Recruit;
 use App\Game;
 use App\User;
 use Illuminate\Http\Request;
-//use Illuminate\Http\Requests\RecruitRequest;
+use App\Http\Requests\RecruitRequest;
 
 class RecruitController extends Controller
 {
@@ -35,7 +35,7 @@ class RecruitController extends Controller
         return view('/recruits/create')->with(['games' => $game->get()]);
     }
     
-    public function store(Request $request, Recruit $recruit)
+    public function store(RecruitRequest $request, Recruit $recruit)
     {
         $input = $request['recruit'];
         $recruit->fill($input)->save();
@@ -56,7 +56,7 @@ class RecruitController extends Controller
         return view('recruits/edit')->with(['recruit' => $recruit, 'games' => $game->get()]);
     }
     
-    public function update(Request $request, Recruit $recruit)
+    public function update(RecruitRequest $request, Recruit $recruit)
     {
         $input_recruit = $request['recruit'];
         $recruit->fill($input_recruit)->save();

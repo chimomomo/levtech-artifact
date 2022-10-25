@@ -24,6 +24,7 @@
             <div class="title">
                 <h2>修正案タイトル</h2>
                 <input type="text" name="amendment[title]" placeholder="タイトル"　value="{{ $amendment->title }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('amendment.title') }}</p>
             </div>
             <div class="user">
                 <input type="hidden" name="amendment[user_id]" value="{{ Auth::user()->id }}"/>
@@ -39,6 +40,7 @@
             <div class="body">
                 <h2>修正案内容</h2>
                 <textarea name="amendment[body]" placeholder="内容">{{ $amendment->body }}</textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('amendment.body') }}</p>
             </div>
             <div class="image">
                 <h2>投稿画像</h2>

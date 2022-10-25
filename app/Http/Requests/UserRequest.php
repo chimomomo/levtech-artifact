@@ -11,10 +11,6 @@ class UserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +20,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user.name' => 'required|string',
         ];
     }
 }

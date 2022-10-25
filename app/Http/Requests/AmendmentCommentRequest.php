@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RecruitRequest extends FormRequest
+class AmendmentCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,8 +20,7 @@ class RecruitRequest extends FormRequest
     public function rules()
     {
         return [
-            'recruit.title' => 'required|string|max:50',
-            'recruit.body' => 'required|string|max:200',
+            'amendmentcomment.comment' => 'required|string|max:200',
         ];
     }
 }

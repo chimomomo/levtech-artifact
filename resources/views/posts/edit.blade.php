@@ -24,6 +24,7 @@
             <div class="title">
                 <h2>投稿タイトル</h2>
                 <input type="text" name="post[title]" placeholder="タイトル"　value="{{ $post->title }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
             </div>
             <div class="user">
                 <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}"/>
@@ -39,6 +40,7 @@
             <div class="body">
                 <h2>投稿内容</h2>
                 <textarea name="post[body]" placeholder="内容">{{ $post->body }}</textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             </div>
             <div class="image">
                 <h2>投稿画像</h2>

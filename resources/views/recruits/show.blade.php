@@ -53,11 +53,57 @@
             <a href="/recruits/{{ $recruit->id }}/edit">募集編集</a>
         </p>
         @endif
+        
+        <form action="/recruits/{{ $recruit->id }}/recruitcomments" method="POST">
+            @csrf
+            <div class="recruit">
+                <input type="hidden" name="recruit_id" value="{{ $recruit->id }}"/>
+            </div>
+            <div class="user">
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
+            </div>
+            <div class="comment">
+                <h2>投稿内容</h2>
+                <textarea name="recruitcomment" placeholder="内容">{{ old('recruit.recruitcomment.comment') }}</textarea>
+                <p class="comment__error" style="color:red">{{ $errors->first('recruit.recruitcomment.comment') }}</p>
+            <input type="submit" value="保存"/>
+        </form>
+        
+        <div class='recruitcomments'>
+            @foreach ($recruit->recruitcomments as $comment)
+                <div class='recruitcomment'>
+                    <img src="{{ asset($comment->user->image_name) }}" width="100" height="100">
+                    <h2 class='users'>
+                        <a href="/mypage/{{ $comment->user->id }}">{{ $comment->user->name }}</a>
+                    </h2>
+                    <p class='comment'>{{ $comment->comment }}</p>
+                    <p class='updated_at'>{{ $comment->updated_at}}</p>
+    
+                    @if(Auth::user()->id == $comment->user->id )
+                        <form action="/recruits/recruitcomments/{{ $comment->id }}" id="form_comment_delete" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" style="display:none">
+                            <p class ='delete'>
+                                [<span onclick="return deleteComment(event);">コメント削除</span>]
+                            </p>
+                        </form>
+                    @endif
+                </div>
+            @endforeach
+        </div>
         <script>
         function deletePost(e) {
             'use strict' ;
             if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
                 document.getElementById('form_delete').submit() ;
+            }
+        }
+        
+        function deleteComment(e) {
+            'use strict' ;
+            if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById('form_comment_delete').submit() ;
             }
         }
         </script>

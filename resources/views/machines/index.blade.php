@@ -12,11 +12,7 @@
     </head>
     <body>
         <h1>
-            @foreach ($games as $game)
-                @if ($loop->index == 0)
-                    {{ $game->machines->name}}のゲーム一覧
-                @endif
-            @endforeach
+            {{ $machinename }}のゲーム一覧 
         </h1>
         <p class = "top">
             <a href="/">トップページへ</a>
@@ -30,6 +26,7 @@
                     <h2 class='title'>
                         <a href="/games/{{ $game->id }}">{{ $game->name }}</a>
                     </h2>
+                    <img src="{{ asset('images/' . $game->image_name) }}" width="100" height="100">
                     <p class='comment'>{{ $game->comment}}</p>
                     <p class='company'>
                         <a href="/companies/{{ $game->company->id }}">{{ $game->company->name}}</a>

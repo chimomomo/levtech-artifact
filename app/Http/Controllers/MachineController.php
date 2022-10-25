@@ -14,6 +14,9 @@ class MachineController extends Controller
     
     public function index(Machine $machine)
     {
-        return view('machines/index')->with(['games' => $machine->getByMachine()]);
+        $machinename = $machine->name;
+        return view('machines/index')->with(['games' => $machine->getByMachine(), 'machinename' => $machinename]);
     }
 }
+
+//, 'machinename' => $machinename

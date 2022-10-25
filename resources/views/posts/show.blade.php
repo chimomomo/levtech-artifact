@@ -51,7 +51,7 @@
                 <p class='updated_at'>{{ $post->updated_at}}</p>
             </div>
             <div class = 'like'>
-                @if($post->is_liked_by_auth_user())
+                @if($post->is_post_liked_by_auth_user())
                     <a href="{{ route('post.unlike', ['id' => $post->id]) }}" >いいね！<span class="badge">{{ $post->postlikes->count() }}</span></a>
                 @else
                     <a href="{{ route('post.like', ['id' => $post->id]) }}" >いいね！<span class="badge">{{ $post->postlikes->count() }}</span></a>
@@ -76,6 +76,7 @@
             <div class="comment">
                 <h2>投稿内容</h2>
                 <textarea name="postcomment" placeholder="内容">{{ old('post.postcomment.comment') }}</textarea>
+                <p class="comment__error" style="color:red">{{ $errors->first('post.postcomment.comment') }}</p>
             <input type="submit" value="保存"/>
         </form>
         

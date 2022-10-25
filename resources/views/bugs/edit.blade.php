@@ -24,6 +24,7 @@
             <div class="title">
                 <h2>バグ投稿タイトル</h2>
                 <input type="text" name="bug[title]" placeholder="タイトル"　value="{{ $bug->title }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('bug.title') }}</p>
             </div>
             <div class="user">
                 <input type="hidden" name="bug[user_id]" value="{{ Auth::user()->id }}"/>
@@ -39,6 +40,7 @@
             <div class="body">
                 <h2>バグ投稿内容</h2>
                 <textarea name="bug[body]" placeholder="内容">{{ $bug->body }}</textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('bug.body') }}</p>
             </div>
             <div class="image">
                 <h2>投稿画像</h2>

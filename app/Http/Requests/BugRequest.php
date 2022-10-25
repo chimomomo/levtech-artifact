@@ -11,10 +11,6 @@ class BugRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +20,8 @@ class BugRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'bug.title' => 'required|string|max:50',
+            'bug.body' => 'required|string|max:200',
         ];
     }
 }

@@ -44,6 +44,7 @@
                     @if($bug->video_name != null)
                         <video src="{{ asset($bug->video_name) }}" width="300" height="300" controls>
                     @endif
+                    <p class='lile'>いいね！{{ $bug->buglikes->count() }}</p>
                     <p class='updated_at'>{{ $bug->updated_at}}</p>
                 </div>
             @endforeach
