@@ -41,6 +41,7 @@
                     @if($amendment->image_name != null)
                         <img src="{{ asset($amendment->image_name) }}" width="100" height="100">
                     @endif
+                    <p class='lile'>いいね！{{ $amendment->amendmentlikes->count() }}</p>
                     <p class='updated_at'>{{ $amendment->updated_at}}</p>
                 </div>
             @endforeach

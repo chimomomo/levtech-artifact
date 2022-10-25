@@ -14,7 +14,9 @@ class CreateBugLikesTable extends Migration
     public function up()
     {
         Schema::create('bug_likes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('bug_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

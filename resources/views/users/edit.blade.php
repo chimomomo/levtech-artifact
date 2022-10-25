@@ -28,6 +28,7 @@
             <div class="name">
                 <h2>名前</h2>
                 <input type="text" name="user[name]" placeholder="名前"　value="{{ $user->name }}"/>
+                <p class="name__error" style="color:red">{{ $errors->first('user.name') }}</p>
             </div>
             <div class="age">
                 <h2>年齢</h2>

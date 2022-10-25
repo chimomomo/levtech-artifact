@@ -68,6 +68,31 @@ class User extends Authenticatable
         return $this->hasMany('App\PostLike');
     }
     
+    public function recruitComments()
+    {
+        return $this->hasMany('App\RecruitComment');
+    }
+    
+    public function amendmentComments()
+    {
+        return $this->hasMany('App\AmendmentComment');
+    }
+    
+    public function amendmentLikes()
+    {
+        return $this->hasMany('App\AmendmentLike');
+    }
+    
+    public function bugComments()
+    {
+        return $this->hasMany('App\BugComment');
+    }
+    
+    public function bugLikes()
+    {
+        return $this->hasMany('App\BugLike');
+    }
+    
     use Notifiable;
 
     /**

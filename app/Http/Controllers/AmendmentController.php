@@ -6,7 +6,7 @@ use App\Amendment;
 use App\Game;
 use App\User;
 use Illuminate\Http\Request;
-//use Illuminate\Http\Requests\AmendmentRequest;
+use App\Http\Requests\ReviewRequest;
 
 class AmendmentController extends Controller
 {
@@ -22,7 +22,7 @@ class AmendmentController extends Controller
         }
 
         $amendment = $query->with('game', 'user')->orderBy('updated_at', 'DESC')->paginate(5);
-        return view('amendments/index')->with(['amnedments' => $amendment, 'keyword' => $keyword]);
+        return view('amendments/index')->with(['amendments' => $amendment, 'keyword' => $keyword]);
     }
     
     public function show(Amendment $amendment)
@@ -35,7 +35,7 @@ class AmendmentController extends Controller
         return view('/amendments/create')->with(['games' => $game->get()]);
     }
     
-    public function store(Request $request, Amendment $amendment)
+    public function store(AmendmentRequest $request, Amendment $amendment)
     {
         $input = $request['amendment'];
         $amendment->fill($input)->save();
@@ -56,7 +56,7 @@ class AmendmentController extends Controller
         return view('amendments/edit')->with(['amendment' => $amendment, 'games' => $game->get()]);
     }
     
-    public function update(Request $request, Amendment $amendment)
+    public function update(AmendmentRequest $request, Amendment $amendment)
     {
         $input_amendment = $request['amendment'];
         $amendment->fill($input_amendment)->save();

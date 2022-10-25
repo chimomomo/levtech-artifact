@@ -14,8 +14,13 @@ class CreateRecruitCommentsTable extends Migration
     public function up()
     {
         Schema::create('recruit_comments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('comment', 200);
+            $table->string('image_name', 200)->nullable();
+            $table->integer('recruit_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

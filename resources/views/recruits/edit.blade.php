@@ -24,6 +24,7 @@
             <div class="title">
                 <h2>募集タイトル</h2>
                 <input type="text" name="recruit[title]" placeholder="タイトル"　value="{{ $recruit->title }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('recruit.title') }}</p>
             </div>
             <div class="user">
                 <input type="hidden" name="recruit[user_id]" value="{{ Auth::user()->id }}"/>
@@ -39,6 +40,7 @@
             <div class="body">
                 <h2>募集内容</h2>
                 <textarea name="recruit[body]" placeholder="内容">{{ $recruit->body }}</textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('recruit.body') }}</p>
             </div>
             <div class="image">
                 <h2>投稿画像</h2>

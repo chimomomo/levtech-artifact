@@ -13,7 +13,8 @@ class Machine extends Model
     
     public function getByMachine(int $limit_count = 5)
     {
-         return $this->games()->with('machines')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        //$machinename = $this->name;
+        return $this->games()->with('machines')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }
 

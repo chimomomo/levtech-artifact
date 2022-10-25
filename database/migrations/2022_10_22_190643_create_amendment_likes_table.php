@@ -14,7 +14,9 @@ class CreateAmendmentLikesTable extends Migration
     public function up()
     {
         Schema::create('amendment_likes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('amendment_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

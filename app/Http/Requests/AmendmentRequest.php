@@ -11,10 +11,6 @@ class AmendmentRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +20,8 @@ class AmendmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'amendment.title' => 'required|string|max:50',
+            'amendment.body' => 'required|string|max:200',
         ];
     }
 }

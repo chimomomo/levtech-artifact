@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-//use Illuminate\Http\Requests\UserRequest;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -18,7 +18,7 @@ class UserController extends Controller
         return view('users/edit')->with(['user' => $user]);
     }
     
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         if($request->has('image')){
             $dir = 'users';
