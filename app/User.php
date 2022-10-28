@@ -107,7 +107,10 @@ class User extends Authenticatable
         'age',
         'sex',
         'comment',
-        'image_name'
+        'discord_url',
+        'discord_deadline',
+        'image_name',
+    
     ];
 
     /**

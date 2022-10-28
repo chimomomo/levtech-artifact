@@ -78,6 +78,7 @@ Route::get('/mypage/posts/{user}', 'UserController@postIndex');
 Route::get('/mypage/recruits/{user}', 'UserController@recruitIndex');
 Route::get('/mypage/bugs/{user}', 'UserController@bugIndex');
 Route::get('/mypage/amendments/{user}', 'UserController@amendmentIndex');
+Route::get('/mypage/discord/{user}', 'UserController@discordURL');
 Route::get('/mypage/{user}/edit', 'UserController@edit');
 Route::put('/mypage/{user}', 'UserController@update');
 Route::get('/mypage/{user}', 'UserController@show');
