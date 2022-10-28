@@ -32,6 +32,16 @@ class UserController extends Controller
         }
         $input_user = $request['user'];
         $user->fill($input_user)->save();
+        
+        if($request->has('url')){
+            $url = $request->input('url');
+            $user->discord_url = $url;
+            $user->save();
+        } else {
+            $user->discord_url = NULL;
+            $user->save();
+        }
+        
         return redirect('/mypage/' . $user->id);
     }
     
@@ -59,4 +69,10 @@ class UserController extends Controller
     {
         return view('users/amendment_index')->with(['amendments' => $user->getByAmendmentUser()]);
     }
+    
+    public function discordURL(User $user)
+    {
+        return redirect()->away($user->discord_url);
+    }
+    //'https://www.google.com'
 }

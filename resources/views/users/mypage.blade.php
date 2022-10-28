@@ -34,7 +34,22 @@
                     </p>
                 </div>
                 <p class='comment'>{{ $user->comment }}</p>
+                @if($user->discord_url != NULL {{--&& $user->is_follow__by_auth_user()--}})
+                    <div class='discord'>
+                        <h4 class='discord__url'>discord招待URL</h4>
+                        <p class='discord__url'>
+                           <a href="/mypage/discord/{{ $user->id }}">{{ $user->discord_url }}</a>
+                        </p>
+                        <h4 class='discord__deadline'>discord招待URLの期限</h4>
+                        <p class='discord__deadline'>
+                            {{ $user->discord_deadline }}
+                        </p>
+                    </div>
+                @else
+                    <p class='discord'>招待URLが設定されていません</p>
+                @endif
                 <p class='updated_at'>{{ $user->updated_at}}</p>
+                
             </div>
         </div>
         @if(Auth::user()->id == $user->id ) 
