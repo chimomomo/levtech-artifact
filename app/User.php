@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -91,6 +92,38 @@ class User extends Authenticatable
     public function bugLikes()
     {
         return $this->hasMany('App\BugLike');
+    }
+    
+    public function followings()
+    {
+         return $this->belongsToMany('App\FollowUser', 'follow_users', 'user_id', 'follow_id');
+    }
+    
+    public function followers()
+    {
+         return $this->belongsToMany('App\FollowUser', 'follow_users', 'follow_id', 'user_id');
+    }
+    
+    public function is_user_follow_by_auth_user()
+    {
+        $id = Auth::id();
+    
+        $userfollows = array();
+        foreach($this->userfollows as $userfollow) {
+            array_push($userfollows, $userfollow->user_id);
+        }
+        
+        if (in_array($id, $userfollow)) {
+            return true;
+        } else {
+            return false ;
+        }
+    }
+    
+    public function follow_each(){
+        $userIds = $this->followings()->pluck('users.id')->toArray();
+        $follow_each = $this->followers()->whereIn('users.id', $userIds)->pluck('users.id')->toArray();
+        return $follow_each;
     }
     
     use Notifiable;
