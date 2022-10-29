@@ -17,6 +17,15 @@
         </p>
         <div class='users'>
             <div class='user'>
+                @if(Auth::user()->id != $user->id ) 
+                    <div class = 'follow'>
+                        @if($user->is_user_follow_by_auth_user())
+                            <a href="{{ route('user.unfollow', ['id' => $user->id]) }}" >フォロー解除！</a>
+                        @else
+                            <a href="{{ route('user.follow', ['id' => $user->id]) }}" >フォローする！</a>
+                        @endif
+                    </div>
+                @endif
                 <img src="{{ asset($user->image_name) }}" width="100" height="100">
                 <h2 class='name'>
                    {{ $user->name }}
@@ -34,11 +43,11 @@
                     </p>
                 </div>
                 <p class='comment'>{{ $user->comment }}</p>
-                @if($user->discord_url != NULL {{--&& $user->is_follow__by_auth_user()--}})
+                 @if($user->discord_url != NULL {{--&& in_array($user->id,Auth::user()->follow_each())--}})
                     <div class='discord'>
                         <h4 class='discord__url'>discord招待URL</h4>
                         <p class='discord__url'>
-                           <a href="/mypage/discord/{{ $user->id }}">{{ $user->discord_url }}</a>
+                            <a href="/mypage/discord/{{ $user->id }}">{{ $user->discord_url }}</a>
                         </p>
                         <h4 class='discord__deadline'>discord招待URLの期限</h4>
                         <p class='discord__deadline'>
@@ -46,10 +55,9 @@
                         </p>
                     </div>
                 @else
-                    <p class='discord'>招待URLが設定されていません</p>
+                    <p class='discord'>招待URLが設定されていないか相互フォローではありません</p>
                 @endif
                 <p class='updated_at'>{{ $user->updated_at}}</p>
-                
             </div>
         </div>
         @if(Auth::user()->id == $user->id ) 
