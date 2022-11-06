@@ -19,7 +19,6 @@ class CreateGamesTable extends Migration
             $table->string('comment', 200);
             $table->string('release_date', 15);
             $table->string('image_name', 50)->nullable();
-            $table->string('image_path', 50)->nullable();
             $table->integer('company_id')->unsigned();
             $table->integer('genre_id')->unsigned();
             $table->timestamps();
