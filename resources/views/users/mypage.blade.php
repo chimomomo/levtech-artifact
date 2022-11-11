@@ -19,11 +19,18 @@
             <div class='user'>
                 @if(Auth::user()->id != $user->id ) 
                     <div class = 'follow'>
-                        @if($user->is_user_follow_by_auth_user())
-                            <a href="{{ route('user.unfollow', ['id' => $user->id]) }}" >フォロー解除！</a>
+                        @if ($following_users_list->contains($user->id))
+                            <form action="/mypage/unfollow/{{ $user->id }}" method="POST">
+                                @csrf
+                                <p>フォロー中</p>
+                                <button class="unfollow">フォロー解除</button>
+                            </form>
                         @else
-                            <a href="{{ route('user.follow', ['id' => $user->id]) }}" >フォローする！</a>
-                        @endif
+                            <form action=="/mypage/follow/{{ $user->id }}" method="POST">
+                                @csrf
+                                <button class="follow">フォローする</button>
+                            </form>
+                         @endif
                     </div>
                 @endif
                 <img src="{{ asset($user->image_name) }}" width="100" height="100">
@@ -43,7 +50,7 @@
                     </p>
                 </div>
                 <p class='comment'>{{ $user->comment }}</p>
-                 @if($user->discord_url != NULL {{--&& in_array($user->id,Auth::user()->follow_each())--}})
+                 @if($user->discord_url != NULL && $following_users_list->contains($user->id) && $follower_users_list->contains($user->id))
                     <div class='discord'>
                         <h4 class='discord__url'>discord招待URL</h4>
                         <p class='discord__url'>
@@ -66,6 +73,12 @@
             </p>
         @endif
         
+        <p class = "following">
+            <a href="/mypage/following/{{ $user->id }}">{{ $user->name }}のフォロー一覧</a>
+        </p>
+        <p class = "follower">
+            <a href="/mypage/follower/{{ $user->id }}">{{ $user->name }}のフォロワー一覧</a>
+        </p>
         <p class = "review">
             <a href="/mypage/reviews/{{ $user->id }}">{{ $user->name }}のレビュー一覧</a>
         </p>

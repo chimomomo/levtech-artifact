@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function show(User $user)
     {
-        return view('users/mypage')->with(['user' => $user]);
+        return view('users/mypage')->with(['user' => $user, 'following_users_list' => auth()->user()->follows, 'follower_users_list' => auth()->user()->followers]);
     }
     
     public function edit(User $user)
@@ -45,6 +45,16 @@ class UserController extends Controller
         return redirect('/mypage/' . $user->id);
     }
     
+    public function followingIndex(User $user)
+    {
+        return view('users/following_index')->with(['user' => $user, 'following_users_list' => auth()->user()->follows]);
+    }
+    
+    public function followerIndex(User $user)
+    {
+        return view('users/follower_index')->with(['user' => $user, 'follower_users_list' => auth()->user()->followers]);
+    }
+    
     public function reviewIndex(User $user)
     {
         return view('users/review_index')->with(['reviews' => $user->getByReviewUser()]);
@@ -74,5 +84,18 @@ class UserController extends Controller
     {
         return redirect()->away($user->discord_url);
     }
+    
+    public function unfollow(User $user)
+    {
+        auth()->user()->follows()->detach($user);
+        return redirect('/mypage/' . $user->id);
+    }
+    
+    public function follow(User $user)
+    {
+        auth()->user()->follows()->attach($user);
+        return redirect('/mypage/' . $user->id);
+    }
+
     //'https://www.google.com'
 }

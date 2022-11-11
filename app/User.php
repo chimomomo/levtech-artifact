@@ -94,37 +94,24 @@ class User extends Authenticatable
         return $this->hasMany('App\BugLike');
     }
     
-    public function followings()
+    public function follows()
     {
-         return $this->belongsToMany('App\FollowUser', 'follow_users', 'user_id', 'follow_id');
+        return $this->belongsToMany(User::class, "follow_users", "following_id", "followed_id");
     }
-    
+
     public function followers()
     {
-         return $this->belongsToMany('App\FollowUser', 'follow_users', 'follow_id', 'user_id');
+        return $this->belongsToMany(User::class, "follow_users", "followed_id", "following_id");
     }
     
-    public function is_user_follow_by_auth_user()
-    {
-        $id = Auth::id();
     
-        $userfollows = array();
-        foreach($this->userfollows as $userfollow) {
-            array_push($userfollows, $userfollow->user_id);
-        }
-        
-        if (in_array($id, $userfollow)) {
-            return true;
-        } else {
-            return false ;
-        }
-    }
     
-    public function follow_each(){
+    /*public function follow_each(){
         $userIds = $this->followings()->pluck('users.id')->toArray();
         $follow_each = $this->followers()->whereIn('users.id', $userIds)->pluck('users.id')->toArray();
         return $follow_each;
     }
+    */
     
     use Notifiable;
 

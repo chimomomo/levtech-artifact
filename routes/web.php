@@ -87,15 +87,13 @@ Route::get('/mypage/bugs/{user}', 'UserController@bugIndex');
 Route::get('/mypage/amendments/{user}', 'UserController@amendmentIndex');
 Route::get('/mypage/discord/{user}', 'UserController@discordURL');
 Route::get('/mypage/amendments/{user}', 'UserController@amendmentIndex');
-Route::get('/mypage/following/{user}', 'UserController@following');
-Route::get('/mypage/follower/{user}', 'UserController@follower');
-Route::get('/mypage/follow/{id}', 'FollowUserController@follow')->name('user.follow');
-Route::get('/mypage/unfollow/{id}', 'FollowUserController@unfollow')->name('user.unfollow');
+Route::get('/mypage/following/{user}', 'UserController@followingIndex');
+Route::get('/mypage/follower/{user}', 'UserController@followerIndex');
+Route::post('/mypage/unfollow/{user}', 'UserController@unfollow');
+Route::post('/mypage/follow/{user}', 'UserController@follow');
 Route::get('/mypage/{user}/edit', 'UserController@edit');
 Route::put('/mypage/{user}', 'UserController@update');
 Route::get('/mypage/{user}', 'UserController@show');
 
-Route::get('/friends', 'FriendController@index');
-Route::get('/friends/edit', 'FriendController@edit');
 Auth::routes();
 
