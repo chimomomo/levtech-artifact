@@ -26,7 +26,7 @@
                                 <button class="unfollow">フォロー解除</button>
                             </form>
                         @else
-                            <form action=="/mypage/follow/{{ $user->id }}" method="POST">
+                            <form action="/mypage/follow/{{ $user->id }}" method="POST">
                                 @csrf
                                 <button class="follow">フォローする</button>
                             </form>
@@ -50,7 +50,18 @@
                     </p>
                 </div>
                 <p class='comment'>{{ $user->comment }}</p>
-                 @if($user->discord_url != NULL && $following_users_list->contains($user->id) && $follower_users_list->contains($user->id))
+                @if(Auth::user()->id == $user->id )
+                    <div class='discord'>
+                        <h4 class='discord__url'>discord招待URL</h4>
+                        <p class='discord__url'>
+                            <a href="/mypage/discord/{{ $user->id }}">{{ $user->discord_url }}</a>
+                        </p>
+                        <h4 class='discord__deadline'>discord招待URLの期限</h4>
+                        <p class='discord__deadline'>
+                            {{ $user->discord_deadline }}
+                        </p>
+                    </div>
+                @elseif($user->discord_url != NULL && $following_users_list->contains($user->id) && $follower_users_list->contains($user->id))
                     <div class='discord'>
                         <h4 class='discord__url'>discord招待URL</h4>
                         <p class='discord__url'>

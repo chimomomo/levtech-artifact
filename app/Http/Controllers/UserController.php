@@ -47,12 +47,12 @@ class UserController extends Controller
     
     public function followingIndex(User $user)
     {
-        return view('users/following_index')->with(['user' => $user, 'following_users_list' => auth()->user()->follows]);
+        return view('users/following_index')->with(['user' => $user, 'following_users_list' => $user->follows]);
     }
     
     public function followerIndex(User $user)
     {
-        return view('users/follower_index')->with(['user' => $user, 'follower_users_list' => auth()->user()->followers]);
+        return view('users/follower_index')->with(['user' => $user, 'follower_users_list' => $user->followers]);
     }
     
     public function reviewIndex(User $user)
