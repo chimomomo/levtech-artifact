@@ -50,7 +50,7 @@
                     </p>
                 </div>
                 <p class='comment'>{{ $user->comment }}</p>
-                @if(Auth::user()->id == $user->id )
+                @if(Auth::user()->id == $user->id && $user->discord_url != NULL)
                     <div class='discord'>
                         <h4 class='discord__url'>discord招待URL</h4>
                         <p class='discord__url'>
@@ -61,6 +61,8 @@
                             {{ $user->discord_deadline }}
                         </p>
                     </div>
+                @elseif(Auth::user()->id == $user->id && $user->discord_url == NULL)
+                    <p class='discord'>招待URLが設定されていません</p>
                 @elseif($user->discord_url != NULL && $following_users_list->contains($user->id) && $follower_users_list->contains($user->id))
                     <div class='discord'>
                         <h4 class='discord__url'>discord招待URL</h4>

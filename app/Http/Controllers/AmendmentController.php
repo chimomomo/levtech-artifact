@@ -47,8 +47,8 @@ class AmendmentController extends Controller
                 "height" => 100,
                 "width" => 100,
             ]);
-            $amendment->image_name = $update->getSecurePath();
-            $amendment->image_id = $update->getPublicId();
+            $amendment->image_name = $upload->getSecurePath();
+            $amendment->image_id = $upload->getPublicId();
             $amendment->save();
         }
         
@@ -71,8 +71,8 @@ class AmendmentController extends Controller
                 "height" => 100,
                 "width" => 100,
             ]);
-            $amendment->image_name = $update->getSecurePath();
-            $amendment->image_id = $update->getPublicId();
+            $amendment->image_name = $upload->getSecurePath();
+            $amendment->image_id = $upload->getPublicId();
             $amendment->save();
         }else{
             $amendment->image_name = NULL;
