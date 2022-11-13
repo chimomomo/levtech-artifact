@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image_name', 200)->default('/images/noimage.jpg');
+            $table->string('image_id', 250)->nullable();
             $table->string('discord_url', 250)->nullable();
             $table->string('discord_deadline', 50)->nullable();
             $table->rememberToken();

@@ -7,6 +7,7 @@ use App\Game;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\RecruitRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class RecruitController extends Controller
 {
@@ -41,10 +42,13 @@ class RecruitController extends Controller
         $recruit->fill($input)->save();
         
         if($request->has('image')){
-            $dir = 'recruits';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $recruit->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $recruit->image_name = $update->getSecurePath();
+            $recruit->image_id = $update->getPublicId();
             $recruit->save();
         }
         
@@ -62,13 +66,17 @@ class RecruitController extends Controller
         $recruit->fill($input_recruit)->save();
         
         if($request->has('image')){
-            $dir = 'recruits';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $recruit->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $recruit->image_name = $update->getSecurePath();
+            $recruit->image_id = $update->getPublicId();
             $recruit->save();
         }else{
             $recruit->image_name = NULL;
+            $recruit->image_id = NULL;
             $recruit->save();
         }
         

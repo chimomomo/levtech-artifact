@@ -7,6 +7,7 @@ use App\Game;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReviewRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AmendmentController extends Controller
 {
@@ -41,10 +42,13 @@ class AmendmentController extends Controller
         $amendment->fill($input)->save();
         
         if($request->has('image')){
-            $dir = 'amendments';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $amendment->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $amendment->image_name = $update->getSecurePath();
+            $amendment->image_id = $update->getPublicId();
             $amendment->save();
         }
         
@@ -62,13 +66,17 @@ class AmendmentController extends Controller
         $amendment->fill($input_amendment)->save();
         
         if($request->has('image')){
-            $dir = 'amendments';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $amendment->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $amendment->image_name = $update->getSecurePath();
+            $amendment->image_id = $update->getPublicId();
             $amendment->save();
         }else{
             $amendment->image_name = NULL;
+            $amendment->image_id = NULL;
             $amendment->save();
         }
         
