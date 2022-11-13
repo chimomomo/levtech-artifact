@@ -46,7 +46,7 @@
                     <img src="{{ asset($post->image_name) }}" width="100" height="100">
                 @endif
                 @if($post->video_name != null)
-                    <video src="{{ asset($post->video_name) }}" width="300" height="300" controls>
+                    <video src="{{ asset($post->video_name) }}" width="300" height="300" controls >
                 @endif
                 <p class='updated_at'>{{ $post->updated_at}}</p>
             </div>

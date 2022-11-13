@@ -47,19 +47,18 @@ class PostController extends Controller
                 "height" => 100,
                 "width" => 100,
             ]);
-            $post->image_name = $update->getSecurePath();
-            $post->image_id = $update->getPublicId();
+            $post->image_name = $upload->getSecurePath();
+            $post->image_id = $upload->getPublicId();
             $post->save();
         }
         
         if($request->has('video')){
             $file = $request->file('video');
             $upload = Cloudinary::upload ( $file->getRealPath(), [
-                "height" => 100,
-                "width" => 100,
+                
             ]);
-            $post->image_name = $update->getSecurePath();
-            $post->image_id = $update->getPublicId();
+            $post->video_name = $upload->getSecurePath();
+            $post->video_id = $upload->getPublicId();
             $post->save();
         }
         
@@ -79,8 +78,8 @@ class PostController extends Controller
                 "height" => 100,
                 "width" => 100,
             ]);
-            $post->image_name = $update->getSecurePath();
-            $post->image_id = $update->getPublicId();
+            $post->image_name = $updload->getSecurePath();
+            $post->image_id = $upload->getPublicId();
             $post->save();
         }else{
             $post->image_name = NULL;
@@ -91,11 +90,10 @@ class PostController extends Controller
         if($request->has('video')){
             $file = $request->file('video');
             $upload = Cloudinary::upload ( $file->getRealPath(), [
-                "height" => 100,
-                "width" => 100,
+                "resource_type" => "video"
             ]);
-            $post->image_name = $update->getSecurePath();
-            $post->image_id = $update->getPublicId();
+            $post->video_name = $upload->getSecurePath();
+            $post->video_id = $upload->getPublicId();
             $post->save();
         }else{
             $post->video_name = NULL;

@@ -27,8 +27,8 @@ class UserController extends Controller
                 "height" => 100,
                 "width" => 100,
             ]);
-            $user->image_name = $update->getSecurePath();
-            $user->image_id = $update->getPublicId();
+            $user->image_name = $upload->getSecurePath();
+            $user->image_id = $upload->getPublicId();
             $user->save();
         }else{
             $user->image_name = '/images/noimage.jpg';

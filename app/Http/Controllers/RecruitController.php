@@ -47,8 +47,8 @@ class RecruitController extends Controller
                 "height" => 100,
                 "width" => 100,
             ]);
-            $recruit->image_name = $update->getSecurePath();
-            $recruit->image_id = $update->getPublicId();
+            $recruit->image_name = $upload->getSecurePath();
+            $recruit->image_id = $upload->getPublicId();
             $recruit->save();
         }
         
@@ -71,8 +71,8 @@ class RecruitController extends Controller
                 "height" => 100,
                 "width" => 100,
             ]);
-            $recruit->image_name = $update->getSecurePath();
-            $recruit->image_id = $update->getPublicId();
+            $recruit->image_name = $upload->getSecurePath();
+            $recruit->image_id = $upload->getPublicId();
             $recruit->save();
         }else{
             $recruit->image_name = NULL;
