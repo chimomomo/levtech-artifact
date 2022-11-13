@@ -20,7 +20,9 @@ class CreateBugsTable extends Migration
             $table->integer('game_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->string('image_name', 250)->nullable();
+            $table->string('image_id', 250)->nullable();
             $table->string('video_name', 250)->nullable();
+            $table->string('video_id', 250)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

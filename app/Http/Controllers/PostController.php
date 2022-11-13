@@ -7,6 +7,7 @@ use App\Game;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class PostController extends Controller
 {
@@ -41,18 +42,24 @@ class PostController extends Controller
         $post->fill($input)->save();
         
         if($request->has('image')){
-            $dir = 'posts';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $post->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $post->image_name = $update->getSecurePath();
+            $post->image_id = $update->getPublicId();
             $post->save();
         }
         
         if($request->has('video')){
-            $dir = 'posts';
-            $file_video_name = $request->file('video')->getClientOriginalName();
-            $request->file('video')->storeAs('public/' . $dir, $file_video_name);
-            $post->video_name = 'storage/' . $dir . '/' . $file_video_name;
+            $file = $request->file('video');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $post->image_name = $update->getSecurePath();
+            $post->image_id = $update->getPublicId();
             $post->save();
         }
         
@@ -67,24 +74,32 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         if($request->has('image')){
-            $dir = 'posts';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $post->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $post->image_name = $update->getSecurePath();
+            $post->image_id = $update->getPublicId();
             $post->save();
         }else{
             $post->image_name = NULL;
+            $post->image_id = NULL;
             $post->save();
         }
         
         if($request->has('video')){
-            $dir = 'posts';
-            $file_video_name = $request->file('video')->getClientOriginalName();
-            $request->file('video')->storeAs('public/' . $dir, $file_video_name);
-            $post->video_name = 'storage/' . $dir . '/' . $file_video_name;
+            $file = $request->file('video');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $post->image_name = $update->getSecurePath();
+            $post->image_id = $update->getPublicId();
             $post->save();
         }else{
             $post->video_name = NULL;
+            $post->video_id = NULL;
             $post->save();
         }
         

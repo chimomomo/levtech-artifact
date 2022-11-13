@@ -7,6 +7,7 @@ use App\Game;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\BugRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BugController extends Controller
 {
@@ -41,18 +42,24 @@ class BugController extends Controller
         $bug->fill($input)->save();
         
         if($request->has('image')){
-            $dir = 'bugs';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $bug->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $bug->image_name = $update->getSecurePath();
+            $bug->image_id = $update->getPublicId();
             $bug->save();
         }
         
         if($request->has('video')){
-            $dir = 'bugs';
-            $file_video_name = $request->file('video')->getClientOriginalName();
-            $request->file('video')->storeAs('public/' . $dir, $file_video_name);
-            $bug->video_name = 'storage/' . $dir . '/' . $file_video_name;
+            $file = $request->file('video');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $bug->video_name = $update->getSecurePath();
+            $bug->video_id = $update->getPublicId();
             $bug->save();
         }
         
@@ -70,24 +77,32 @@ class BugController extends Controller
         $bug->fill($input_bug)->save();
         
         if($request->has('image')){
-            $dir = 'bugs';
-            $file_image_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_image_name);
-            $bug->image_name = 'storage/' . $dir . '/' . $file_image_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $bug->image_name = $update->getSecurePath();
+            $bug->image_id = $update->getPublicId();
             $bug->save();
         }else{
             $bug->image_name = NULL;
+            $bug->image_id = NULL;
             $bug->save();
         }
         
         if($request->has('video')){
-            $dir = 'bugs';
-            $file_video_name = $request->file('video')->getClientOriginalName();
-            $request->file('video')->storeAs('public/' . $dir, $file_video_name);
-            $bug->video_name = 'storage/' . $dir . '/' . $file_video_name;
+            $file = $request->file('video');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $bug->video_name = $update->getSecurePath();
+            $bug->video_id = $update->getPublicId();
             $bug->save();
         }else{
             $bug->video_name = NULL;
+            $bug->video_id = NULL;
             $bug->save();
         }
         

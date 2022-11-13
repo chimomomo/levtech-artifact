@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class UserController extends Controller
 {
@@ -21,13 +22,17 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         if($request->has('image')){
-            $dir = 'users';
-            $file_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir, $file_name);
-            $user->image_name = 'storage/' . $dir . '/' . $file_name;
+            $file = $request->file('image');
+            $upload = Cloudinary::upload ( $file->getRealPath(), [
+                "height" => 100,
+                "width" => 100,
+            ]);
+            $user->image_name = $update->getSecurePath();
+            $user->image_id = $update->getPublicId();
             $user->save();
         }else{
             $user->image_name = '/images/noimage.jpg';
+            $user->image_id = NULL;
             $user->save();
         }
         $input_user = $request['user'];

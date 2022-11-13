@@ -18,7 +18,9 @@ class CreatePostsTable extends Migration
             $table->string('title', 50);
             $table->string('body', 200);
             $table->string('video_name', 250)->nullable();
+            $table->string('video_id', 250)->nullable();
             $table->string('image_name', 250)->nullable();
+            $table->string('image_id', 250)->nullable();
             $table->integer('game_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
